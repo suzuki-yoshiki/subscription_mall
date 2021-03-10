@@ -22,7 +22,11 @@
         <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
         <div class="text-sub-center-top owner-btn">
           <p class="lead grey-text mx-auto mb-5">美味しい物が食べたいけど、時間とお金がない！<br>➡️食事する事で時間と出費が節約出来ます。</p>
-          <%= link_to "経営者様はこちら", top_owner_path, class:"btn btn-c btn--pink2 btn--cubic2" %>
+          <%
+=begin%>
+ <%= link_to "経営者様はこちら", top_owner_path, class:"btn btn-c btn--pink2 btn--cubic2" %> 
+<%
+=end%>
         </div>
       </div>
     <% elsif current_user.present? %> <%# 会員ユーザーでログインしているかどうか %>
@@ -45,7 +49,11 @@
         <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
         <div class="text-sub-center-top owner-btn">
           <p class="lead grey-text mx-auto mb-5">美味しい物が食べたいけど、時間とお金がない！<br>➡️食事する事で時間と出費が節約出来ます。</p>
-          <%= link_to "経営者様はこちら", top_owner_path, class:"btn btn-c btn--pink2 btn--cubic2" %>
+          <%
+=begin%>
+ <%= link_to "経営者様はこちら", top_owner_path, class:"btn btn-c btn--pink2 btn--cubic2" %> 
+<%
+=end%>
         </div>
       </div>
     <% elsif current_admin.present? %> <%# 管理者でログインしているかどうか %>
@@ -70,8 +78,12 @@
         <%= video_tag("/videos/production ID_3977086.mp4", autoplay: :true, loop: :true, muted: :true) %>
         <div class="text-sub-center-top owner-btn">
           <p class="lead grey-text mx-auto mb-5">美味しい物が食べたいけど、時間とお金がない！<br>➡️食事する事で時間と出費が節約出来ます。</p>
-          <%= link_to "経営者様はこちら", top_owner_path, class:"btn btn-c btn--pink2 btn--cubic2" %>
-          <%= link_to "利用者様会員登録", new_user_registration_path, class:"btn btn-c btn--pink btn--cubic" %>
+          <%
+=begin%>
+ <%= link_to "経営者様はこちら", top_owner_path, class:"btn btn-c btn--pink2 btn--cubic2" %>
+          <%= link_to "利用者様会員登録", new_user_registration_path, class:"btn btn-c btn--pink btn--cubic" %> 
+<%
+=end%>
         </div>
       </div>
     <% end %>
