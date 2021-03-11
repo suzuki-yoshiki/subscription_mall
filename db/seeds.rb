@@ -15,7 +15,7 @@ puts "Admin Created"
 30.times do |n|
 name  = Faker::Name.name
 email = "sample-#{n+1}@email.com"
-phone_number = phone_number
+phone_number = "00000000000"
 password = "password1"
 User.create!(name: name,
     email: email,
@@ -29,7 +29,7 @@ puts "User Created"
 30.times do |n|
 name  = Faker::Name.name
 email = "sample#{n+1}@email.com"
-phone_number = phone_number
+phone_number = "00000000000"
 password = "password1"
 Owner.create!(name: name,
     email: email,
