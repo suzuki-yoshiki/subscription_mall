@@ -27,11 +27,11 @@ gem 'devise-i18n'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'omniauth-google-oauth2', '~> 0.8.0'
+# gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'omniauth-instagram'
 gem 'dotenv-rails'
 gem 'omniauth-line'
-gem 'omniauth-oauth2', '>= 1.6'
+gem 'omniauth-oauth2', '>= 1.3.1'
 gem 'stripe'
 gem 'geocoder'#googlemap用
 gem 'gon'#googlemapお店一覧用
@@ -79,6 +79,8 @@ group :development, :test do
 end
 
 group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
@@ -86,6 +88,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
+  gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :production do
