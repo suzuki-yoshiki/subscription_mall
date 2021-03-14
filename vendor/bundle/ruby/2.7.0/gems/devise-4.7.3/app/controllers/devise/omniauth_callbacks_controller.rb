@@ -12,53 +12,53 @@ class Devise::OmniauthCallbacksController < DeviseController
     redirect_to after_omniauth_failure_path_for(resource_name)
   end
 
-  def line
-    basic_action1 :line
-  end
+  # def line
+  #   basic_action1 :line
+  # end
 
-  def line_owner
-    basic_action2 :line_owner
-  end
+  # def line_owner
+  #   basic_action2 :line_owner
+  # end
 
   private
 
-    def basic_action1 # line ログイン用メソッドです
-      @omniauth = request.env['omniauth.auth']
-      if @omniauth.present?
-        @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
-        if @profile
-          @profile.set_values(@omniauth)
-          sign_in(:user, @profile)
-        else
-          @profile = User.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
-          @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
-          @profile.set_values(@omniauth)
-          sign_in(:user, @profile)
-          # redirect_to edit_user_path(@profile.user.id) and return
-        end
-      end
-      flash[:notice] = "ログインしました"
-      redirect_to user_path(@profile)
-    end
+  #   def basic_action1 # line ログイン用メソッドです
+  #     @omniauth = request.env['omniauth.auth']
+  #     if @omniauth.present?
+  #       @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
+  #       if @profile
+  #         @profile.set_values(@omniauth)
+  #         sign_in(:user, @profile)
+  #       else
+  #         @profile = User.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
+  #         @profile = current_user || User.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+  #         @profile.set_values(@omniauth)
+  #         sign_in(:user, @profile)
+  #         # redirect_to edit_user_path(@profile.user.id) and return
+  #       end
+  #     end
+  #     flash[:notice] = "ログインしました"
+  #     redirect_to user_path(@profile)
+  #   end
 
-    def basic_action2 # line ログイン用メソッドです
-      @omniauth = request.env['omniauth.auth']
-      if @omniauth.present?
-        @profile = Owner.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
-        if @profile
-          @profile.set_values(@omniauth)
-          sign_in(:owner, @profile)
-        else
-          @profile = Owner.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
-          @profile = current_owner || Owner.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
-          @profile.set_values(@omniauth)
-          sign_in(:owner, @profile)
-          # redirect_to edit_owner_path(@profile.user.id) and return
-        end
-      end
-      flash[:notice] = "ログインしました"
-      redirect_to owner_path(@profile)
-    end
+  #   def basic_action2 # line ログイン用メソッドです
+  #     @omniauth = request.env['omniauth.auth']
+  #     if @omniauth.present?
+  #       @profile = Owner.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
+  #       if @profile
+  #         @profile.set_values(@omniauth)
+  #         sign_in(:owner, @profile)
+  #       else
+  #         @profile = Owner.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
+  #         @profile = current_owner || Owner.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+  #         @profile.set_values(@omniauth)
+  #         sign_in(:owner, @profile)
+  #         # redirect_to edit_owner_path(@profile.user.id) and return
+  #       end
+  #     end
+  #     flash[:notice] = "ログインしました"
+  #     redirect_to owner_path(@profile)
+  #   end
   
   
     def failed_strategy
