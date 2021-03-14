@@ -36,14 +36,11 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter
   end
 
-  def line
-    basic_action :line
-  end
-
+  def line; basic_action end
 
   private
 
-  def basic_action(request) # line ログイン用メソッドです
+  def basic_action # line ログイン用メソッドです
     @omniauth = request.env['omniauth.auth']
     if @omniauth.present?
       @profile = User.where(provider: @omniauth['provider'], uid: @omniauth['uid']).first
