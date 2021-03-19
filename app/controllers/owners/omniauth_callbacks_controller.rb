@@ -49,7 +49,9 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         sign_in(:owner, @profile)
       else
         @profile = Owner.new(provider: @omniauth['provider'], uid: @omniauth['uid'])
-        @profile = current_owner || Owner.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+        email = @omniauth['info']['email'] ? @omniauth['info']['email'] : "#{@omniauth['uid']}-#{@omniauth['provider']}@example.com"
+        @profile = current_owner || Owner.create!(provider: @omniauth['provider'], uid: @omniauth['uid'], email: email, name: @omniauth['info']['name'], password: Devise.friendly_token[0, 20])
+        @profile.save(:validate => false)
         @profile.set_values(@omniauth)
         sign_in(:owner, @profile)
         # redirect_to edit_owner_path(@profile.user.id) and return
