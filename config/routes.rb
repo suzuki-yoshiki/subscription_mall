@@ -59,7 +59,7 @@ Rails.application.routes.draw do
     post 'users/sign_up/complete', to: 'users/registrations#complete'
     get "/devise/auth/facebook/callback" => "users/omniauth_callbacks#facebook"
     get "/devise/auth/twitter/callback" => "users/omniauth_callbacks#twitter"
-    get "/devise/auth/line/callback" => "users/omniauth_callbacks#line"
+    get "/users/auth/line/callback" => "users/omniauth_callbacks#line"
     get 'users/sign_up', to: 'users#new'
   end
 
@@ -71,7 +71,7 @@ Rails.application.routes.draw do
   devise_scope :owner do
     get "/devise/auth/facebook_owner/callback" => "owners/omniauth_callbacks#facebook_owner"
     get "/devise/auth/twitter_owner/callback" => "owners/omniauth_callbacks#twitter_owner"
-    get "/devise/auth/line_owner/callback" => "owners/omniauth_callbacks#line_owner"
+    get "/owners/auth/line/callback" => "owners/omniauth_callbacks#line_owner"
   end
 
   devise_scope :owner do
@@ -117,7 +117,7 @@ Rails.application.routes.draw do
       post "thanks" #会員登録完了通知画面
       get 'owner_account' #アカウントページ
       get 'user_email' #経営者から利用者へメール作成
-      post 'to_user_email' 
+      post 'to_user_email'
       patch 'update_deleted_owners' #アカウントページ論理削除
     end
     resources :subscriptions do

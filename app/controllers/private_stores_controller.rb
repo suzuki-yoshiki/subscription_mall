@@ -186,11 +186,13 @@ class PrivateStoresController < ApplicationController
                                               :sub_image10,
                                               :sub_image11,
                                               :sub_image12,
+                                              :admin_private_check,
                                               :private_store_detail,
                                               :price,
                                               :category_id,
                                               :owner_id,
                                               :product_id,
+					      :trial,
                                               # { :images_attributes=> [:private_store_id, :private_store_image]},
                                               #{ :category_ids=> [] }
                                             )
