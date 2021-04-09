@@ -9,7 +9,12 @@ class UserPlansController < ApplicationController
 
   # stripe決済成功時
   def success
-    current_user.update!(customer_id: current_user.session_id, session_id: "", user_price: current_user.session_price, session_price: "")
+    current_user.update!(customer_id: current_user.session_id, session_id: "", price: current_user.session_price, session_price: "")
+    if current_user.select_trial && current_user.price == 1000
+      current_user.update!(trial_stripe_success: true)
+    else 
+      current_user.update!(trial_stripe_success: false)
+    end 
     AdminMailer.send_payment_email(current_user).deliver_now
   end
 
@@ -22,7 +27,7 @@ class UserPlansController < ApplicationController
   def new
     @subscription = Subscription.find(params[:id])
 
-    if @subscription.trial == "参加" && current_user.select_trial
+    if @subscription.trial == true && current_user.select_trial
       if Rails.env.development? || Rails.env.test?
         @trial_plan = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],
@@ -213,7 +218,7 @@ class UserPlansController < ApplicationController
 
   def update
     @sub.plan = current_user.session_id
-    current_user.update!(session_id: "", user_price: current_user.session_price, session_price: "", issue_ticket_day: nil)
+    current_user.update!(session_id: "", price: current_user.session_price, session_price: "", issue_ticket_day: nil)
     if @sub.save
       flash[:success] = "正常に更新されました"
       redirect_to current_user
@@ -223,6 +228,7 @@ class UserPlansController < ApplicationController
   end
 
   def destroy
+    current_user.update!(plan_canceled: true)
     flash[:danger] = "正常に解除されました"
     redirect_to root_url
   end
