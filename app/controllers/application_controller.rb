@@ -54,7 +54,7 @@ class ApplicationController < ActionController::Base
       # 現在の支払い情報
       @payment = Stripe::Checkout::Session.retrieve(@pay)
       # サブスクプラン更新用
-      @sub = Stripe::Subscription.retrieve(@payment.subscription)
+      #@sub = Stripe::Subscription.retrieve(@payment.subscription)
     end
   end
 
@@ -137,6 +137,13 @@ class ApplicationController < ActionController::Base
       authenticate_owner!
     else
       redirect_to root_url, notice: 'ログインしている経営者様のみ確認可能なページです。'
+    end
+  end
+
+  # emailが空欄時(SNSログイン時)
+  def current_user_email_present?
+    unless current_user.email.present?
+      redirect_to edit_user_url(current_user), notice: "メールアドレスを登録してください"
     end
   end
 
