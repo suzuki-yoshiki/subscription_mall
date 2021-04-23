@@ -12,7 +12,7 @@ Admin.create!(name: "中野優",
               password_confirmation: "password")
 puts "Admin Created"
 
-30.times do |n|
+100.times do |n|
   name  = Faker::Name.name
   email = "sample-#{n+1}@email.com"
   password = "password1"
@@ -227,8 +227,6 @@ Subscription.create!(
   price: "11000",
   image_subscription: "karaage.jpeg",
   address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
-  takeout: true,
-  preparation_time: 15,
 )
 
 Subscription.create!(
@@ -238,7 +236,7 @@ Subscription.create!(
   name: "個室居酒屋　たすき　天王町駅前店",
   recommend: true,
   trial: true,
-  title: "個室居酒屋セット",
+  title: "サンプルタイトル4",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
   subscription_detail: "大阪",
@@ -247,39 +245,39 @@ Subscription.create!(
   address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
 )
 
-# Subscription.create!(
-#   ordinal: 3,
-#   owner_id: 1,
-#   category_id:  3,
-#   name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
-#   recommend: false,
-#   trial: true,
-#   title: "サンプルタイトル5",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "25000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県相模原市中央区淵野辺3-16-2 1F",
-#   recommend: false,
-# )
+Subscription.create!(
+  ordinal: 3,
+  owner_id: 1,
+  category_id:  3,
+  name: "拉麺一匠 DEAD OR ALIVE 淵野辺店",
+  recommend: false,
+  trial: true,
+  title: "サンプルタイトル5",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "25000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県相模原市中央区淵野辺3-16-2 1F",
+  recommend: false,
+)
 
-# Subscription.create!(
-#   ordinal: 4,
-#   owner_id: 1,
-#   category_id:  3,
-#   name: "拉麺一匠 DEAD OR ALIVE 矢部店",
-#   recommend: false,
-#   trial: false,
-#   title: "サンプルタイトル6",
-#   shop_introduction: "焼きたて3",
-#   detail: "食べ放題3",
-#   subscription_detail: "大阪",
-#   price: "50000",
-#   image_subscription: "karaage.jpeg",
-#   address: "神奈川県相模原市中央区矢部4-18-4 カーサビアンカ5 1F",
-#   recommend: false,
-# )
+Subscription.create!(
+  ordinal: 4,
+  owner_id: 1,
+  category_id:  3,
+  name: "拉麺一匠 DEAD OR ALIVE 矢部店",
+  recommend: false,
+  trial: false,
+  title: "サンプルタイトル6",
+  shop_introduction: "焼きたて3",
+  detail: "食べ放題3",
+  subscription_detail: "大阪",
+  price: "50000",
+  image_subscription: "karaage.jpeg",
+  address: "神奈川県相模原市中央区矢部4-18-4 カーサビアンカ5 1F",
+  recommend: false,
+)
 
 Subscription.create!(
   ordinal: 5,
@@ -288,7 +286,7 @@ Subscription.create!(
   name: "木村屋本店　 町田駅前店",
   recommend: true,
   trial: false,
-  title: "木村屋セット",
+  title: "サンプルタイトル7",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
   subscription_detail: "大阪",
@@ -304,7 +302,7 @@ Subscription.create!(
   name: "北海道BEER&BBQ 小田急町田",
   recommend: true,
   trial: false,
-  title: "北海道BEER&BBQセット",
+  title: "サンプルタイトル8",
   shop_introduction: "焼きたて3",
   detail: "食べ放題3",
   subscription_detail: "大阪",
@@ -384,3 +382,4 @@ Category.create!(name: "その他",
     image_category: "https://media.gettyimages.com/photos/eating-tasty-food-favorite-meal-picture-id931464590?k=6&m=931464590&s=612x612&w=0&h=nqB6QF0fsmtiYAgb2rmBRixQowzXHe42KWSqMeIUB7g="
     )
 puts "Category Created"
+
