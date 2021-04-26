@@ -225,7 +225,8 @@ Rails.application.routes.draw do
   get "subscriptions/:subscription/prices/:price/subscription_plan", to: "user_plans#subscription_plan", as: :subscription_plan#価格に応じた加盟店のプランへ
   get "private_stores/:private_store/prices/:price/private_store_plan", to: "private_store_user_plans#private_store_plan", as: :private_store_plan#価格に応じた個人店のプランへ
 
-  get "owners/:owners/private_store_ticket_buyer_list", to: "owners#private_store_ticket_buyer_list", as: :private_store_ticket_buyer_list#個人店舗のチケット購買者一覧へ
+  get "owners/:owners/private_store_ticket_buyer_list", to: "owners#private_store_ticket_buyer_list", as: :private_store_ticket_buyer_list#オーナーが見る個人店舗のチケット購買者一覧へ
+  get "admins/private_store_ticket_buyer_list", to: "admins#private_store_ticket_buyer_list", as: :admins_private_store_ticket_buyer_list#管理者が見る個人店舗のチケット購買者一覧へ
 
 
 
