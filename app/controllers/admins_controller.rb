@@ -57,7 +57,7 @@ class AdminsController < ApplicationController
   end
 
   def private_stores_index
-    @private_stores = PrivateStore.all.paginate(page: params[:page], per_page: 20)
+    @private_stores = PrivateStore.includes(:owner).paginate(page: params[:page], per_page: 20)
   end
 
   # Owner加盟店審査アクション
@@ -78,7 +78,7 @@ class AdminsController < ApplicationController
       end
     end
     @subscription.update(subscription_owner_params)
-    SubscriptionMailer.with(subscription: @subscription, new: "承認").judging_email.deliver_now
+    # SubscriptionMailer.with(subscription: @subscription, new: "承認").judging_email.deliver_now
     flash[:notice] = "#{@owner.name}様の加盟店申し込みを#{@subscription.admin_subscription_check}しました"
     redirect_to admins_subscriptions_index_url and return
   end
@@ -101,8 +101,8 @@ class AdminsController < ApplicationController
       end
     end
     @private_store.update(private_owner_params)
-    PrivateStoreMailer.with(private_store: @private_store, new: "承認").judging_email.deliver_now
-    flash[:notice] = "#{@owner.name}様の加盟店申し込みを#{@private_store.admin_private_check}しました"
+    # PrivateStoreMailer.with(private_store: @private_store, new: "承認").judging_email.deliver_now
+    flash[:notice] = "#{@owner.name}様の個人店申し込みを#{@private_store.admin_private_check}しました"
     redirect_to admins_private_stores_index_url and return
   end
 

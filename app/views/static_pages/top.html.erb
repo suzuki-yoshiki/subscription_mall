@@ -308,7 +308,7 @@
         <div class="box26">
           <div class="left">
             <%= link_to "メディア掲載", medias_path, class: "btn btn-link" %>
-            <table class="mb-12">
+            <table class="sm-12">
               <tbody>
                 <% if current_admin.present? %>
                   <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
@@ -316,24 +316,14 @@
                 <% @medias.each do |media| %>
                 <hr class="tool-bar">
                   <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-12">
                       <%= media.media_name %>
                     </div><br>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                       <% if media.media_image.present? %>
-                        <div><%= image_tag media.media_image, :size => '200x100' %></div>
-                      <% else %>
-
+                        <div><%= image_tag media.media_image, :size => '150' %></div>
                       <% end %>
                     </div>
-                  <% if current_admin.present? %>
-                    <div class="col-sm-2">
-                      <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
-                    </div>
-                    <div class="col-sm-2">
-                      <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
-                    </div>
-                  <% end %>
                   </div>
                 <% end %>
               </tbody>
@@ -380,7 +370,7 @@
               <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
               <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
               <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
-              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "https://www.youtube.com/channel/UCBNC5UbQm8d1LsxdKW3Km-g" %>
             </div>
           </div>
         </div>
@@ -802,7 +792,7 @@
         <div class="box26">
           <div class="left">
             <%= link_to "メディア掲載", medias_path, class: "btn btn-link" %>
-            <table class="mb-12">
+            <table class="sm-12">
               <tbody>
                 <% if current_admin.present? %>
                   <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
@@ -810,24 +800,14 @@
                 <% @medias.each do |media| %>
                 <hr class="tool-bar">
                   <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-12">
                       <%= media.media_name %>
                     </div><br>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                       <% if media.media_image.present? %>
-                        <div><%= image_tag media.media_image, :size => '200' %></div>
-                      <% else %>
-
+                        <div><%= image_tag media.media_image, :size => '150' %></div>
                       <% end %>
                     </div>
-                  <% if current_admin.present? %>
-                    <div class="col-sm-2">
-                      <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
-                    </div>
-                    <div class="col-sm-2">
-                      <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
-                    </div>
-                  <% end %>
                   </div>
                 <% end %>
               </tbody>
@@ -876,7 +856,7 @@
               <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
               <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
               <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
-              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "https://www.youtube.com/channel/UCBNC5UbQm8d1LsxdKW3Km-g" %>
             </div>
           </div>
         </div>
@@ -935,7 +915,7 @@
     <h1 class="trial center concept"><%= link_to "＼お試しプラン／のお店はこちら", trial_shop_path, class: "btn btn-link" %></h1>
     <div class="row">
       <div class="col-sm-12">
-	<div class="trial_plan">
+        <div class="trial_plan">
             <div>
               <span class="box1"><%= link_to "１週間３食１０００円", trial_plan_path, class: "btn btn-link box2 disabled" %></span>
             <div>
@@ -1227,7 +1207,7 @@
         <div class="box26">
           <div class="left">
             <%= link_to "メディア掲載", medias_path, class: "btn btn-link" %>
-            <table class="mb-12">
+            <table class="sm-12">
               <tbody>
                 <% if current_admin.present? %>
                   <%= link_to '新規作成', new_media_path, class: "btn-gradient-radius" %>
@@ -1235,24 +1215,14 @@
                 <% @medias.each do |media| %>
                 <hr class="tool-bar">
                   <div class="row">
-                    <div class="col-sm-2">
+                    <div class="col-sm-12">
                       <%= media.media_name %>
                     </div><br>
-                    <div class="col-sm-4">
+                    <div class="col-sm-8">
                       <% if media.media_image.present? %>
-                        <div><%= image_tag media.media_image, :size => '200x100' %></div>
-                      <% else %>
-
+                        <div><%= image_tag media.media_image, :size => '150' %></div>
                       <% end %>
                     </div>
-                  <% if current_admin.present? %>
-                    <div class="col-sm-2">
-                      <%= link_to "編集", edit_media_path(media), class: "btn btn-brand" %>
-                    </div>
-                    <div class="col-sm-2">
-                      <%= link_to "削除", media_path(media), method: :delete, class: "btn btn-danger", data: { confirm: "メディアを削除してよろしいですか？" } %>
-                    </div>
-                  <% end %>
                   </div>
                 <% end %>
               </tbody>
@@ -1274,7 +1244,7 @@
                     </div>
                     <div class="col-sm-8">
                       <% if owner.image_subscription.present? %>
-                        <%= image_tag owner.image_subscription_url ,width: '150', height: "150" %>
+                        <%= image_tag owner.image_subscription_url, :size => '150' %>
                       <% end %>
                     </div>
                   </div>
@@ -1300,7 +1270,7 @@
               <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
               <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
               <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
-              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "https://www.youtube.com/channel/UCBNC5UbQm8d1LsxdKW3Km-g" %>
             </div>
           </div>
         </div>
@@ -1645,7 +1615,7 @@
                     </div><br>
                     <div class="col-sm-4">
                       <% if media.media_image.present? %>
-                        <div><%= image_tag media.media_image, :size => '200x100' %></div>
+                        <div><%= image_tag media.media_image, :size => '200' %></div>
                       <% else %>
 
                       <% end %>
@@ -1705,7 +1675,7 @@
               <%= link_to image_tag("icon_sns_tw.png", :size =>'100x100'), "https://twitter.com/megurumee" %>
               <%= link_to image_tag("icon_sns_insta.png", :size =>'100x100'), "https://www.instagram.com/megurume.world" %>
               <%= link_to image_tag("icon_sns_line.png", :size =>'100x100'), "megurume_line" %>
-              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "/" %>
+              <%= link_to image_tag("icon_sns_yt.png", :size =>'100x100'), "https://www.youtube.com/channel/UCBNC5UbQm8d1LsxdKW3Km-g" %>
             </div>
           </div>
         </div>

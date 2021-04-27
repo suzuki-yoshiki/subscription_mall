@@ -242,6 +242,19 @@
           <h2 class="ml-xl-0 ml-4">
             <strong>店舗情報: </strong><%= @subscription.subscription_detail %></h2>
           <h2 class="ml-xl-0 ml-4">
+            <strong>デリバリー: </strong>
+            <% if @subscription.delivery === true %>
+              <%= "可" %>
+            <% elsif @subscription.delivery === false %>
+              <%= "不可" %>
+            <% end %>
+            <% if @subscription.food_loss === true %>
+              <%= "はい" %>
+            <% elsif @subscription.food_loss === false %>
+              <%= "いいえ" %>
+            <% end %>
+          </h2>
+          <h2 class="ml-xl-0 ml-4">
             <strong>加入プラン: </strong><%= @subscription.price %></h2>
 
           <%# google map %>

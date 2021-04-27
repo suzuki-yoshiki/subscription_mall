@@ -17,11 +17,9 @@
             <%= media.media_name %>
           </div><br>
           <div class="col-sm-4">
-          <% if media.media_image.present? %>
-            <div class="grid-item-image"><%= image_tag media.media_image,:size => '300x200' %></div>
-          <% else %>
-          
-          <% end %>
+            <% if media.media_image.present? %>
+              <div class="grid-item-image"><%= image_tag media.media_image,:size => '300' %></div>
+            <% end %>
           </div>
         <% if current_admin.present? %>
           <div class="col-sm-2">

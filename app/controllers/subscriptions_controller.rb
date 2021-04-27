@@ -235,21 +235,15 @@ class SubscriptionsController < ApplicationController
                                               :trial,
                                               :takeout,
                                               :preparation_time,
+                                              :food_loss,
+                                              :delivery,
                                               # { :images_attributes=> [:subscription_id, :subscription_image]},
                                               # { :category_ids=> [] }
                                             )
       end
 
-      def judging_params
-        params.require(:subscription).permit(:name, :owner_id, :site, :admin_subscription_check)
-      end
-
       def recommend_params
         params.require(:subscription).permit(:recommend, :owner_id)
-      end
-
-      def favorite_params
-        params.require(:subscription).permit(:favorite, :user_id)
       end
 
       def map_params

@@ -13,10 +13,17 @@
     </h1>
     <p>
       <% if @new == "true" %>
-        個人店舗 <%= @private_store.name %> から審査申し込みがありました。<br>
-        お店URL<%= @private_store.site %> <br>
+        個人店舗 「<%= @private_store.name %> 」から審査申し込みがありました。<br>
+        お店URL「<%= @private_store.site %> 」<br>
+        登録したい商品の金額「<%= @private_store.price %> 円」<br>
+        フードロスにご協力「
+        <% if @private_store.food_loss === true %>
+          <%= "はい" %>
+        <% elsif @private_store.food_loss === false %>
+          <%= "いいえ" %>
+        <% end %>」 <br>
         個人店舗の審査を完了させてください。<br>
-        <%= @url %>
+        「<%= @url %>」
       <% else %>
         個人店舗 <%= @private_store.name %> が編集されました。<br>
         お店URL<%= @private_store.site %> <br>
