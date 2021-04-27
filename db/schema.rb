@@ -367,6 +367,7 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.boolean "trial"
+    t.boolean "food_loss"
     t.integer "price"
     t.string "trial_check"
     t.string "trial_last_check"

@@ -24,6 +24,11 @@
       <span class="badge badge-success">加盟店</span>
     <% end %>
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
+    <span class="badge badge-info">
+      <% if @subscription.food_loss === true %>
+        <%= "フードロス実施店舗" %>
+      <% end %>
+    </span>
     <p class="text-muted w-responsive mx-auto mb-5">チケット発券画面です。</p>
     <div class="row">
       <div class="col-lg-4 col-md-6 mb-4">
@@ -64,6 +69,7 @@
                           <%= f.hidden_field :trial_count, :value => 2 %>
                           <%= f.hidden_field :price, :value => current_user.price %>
                           <%= f.hidden_field :trial, :value => @subscription.trial %>
+                          <%= f.hidden_field :food_loss, :value => @subscription.food_loss %>
                           <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                       <% end %>
                   <% elsif current_user.ticket.trial_count === 2 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が2回終えたの場合%>
@@ -79,6 +85,7 @@
                           <%= f.hidden_field :trial_count, :value => 3 %>
                           <%= f.hidden_field :price, :value => current_user.price %>
                           <%= f.hidden_field :trial, :value => @subscription.trial %>
+                          <%= f.hidden_field :food_loss, :value => @subscription.food_loss %>
                           <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                       <% end %>
                   <% end %>
@@ -96,6 +103,7 @@
                     <%= f.hidden_field :trial_count, :value => 3 %>
                     <%= f.hidden_field :price, :value => current_user.price %>
                     <%= f.hidden_field :trial, :value => @subscription.trial %>
+                    <%= f.hidden_field :food_loss, :value => @subscription.food_loss %>
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
             <% elsif ((Date.today.wday == 6) || (Date.today.wday == 0)) && (current_user.price < 18000) %> <%#プランが18000以下かつ土日の場合%>
@@ -115,6 +123,7 @@
                     <!--%= f.hidden_field :user_id, :value => current_user.id %-->
                     <%= f.hidden_field :price, :value => current_user.price %>
                     <%= f.hidden_field :trial, :value => @subscription.trial %>
+                    <%= f.hidden_field :food_loss, :value => @subscription.food_loss %>
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
              <% end %>
@@ -136,6 +145,11 @@
       <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
     <% end %>    
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
+    <span class="badge badge-info">
+      <% if @subscription.food_loss === true %>
+        <%= "フードロス実施店舗" %>
+      <% end %>
+    </span>
     <p class="text-muted w-responsive mx-auto mb-5">チケット発券画面です。</p>
     <div class="row">
       <div class="col-lg-4 col-md-6 mb-4 mx-auto">
@@ -171,6 +185,7 @@
                     <%= f.hidden_field :trial_count, :value => 1 %>
                     <%= f.hidden_field :price, :value => current_user.price %>
                     <%= f.hidden_field :trial, :value => @subscription.trial %>
+                    <%= f.hidden_field :food_loss, :value => @subscription.food_loss %>
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
               <% elsif ((Date.today.wday == 6) || (Date.today.wday == 0)) && (current_user.price < 18000) %> <%#初めてのチケット発券でプランが18000以下かつ土日の場合%>
@@ -187,6 +202,7 @@
                     <%= f.hidden_field :user_id, :value => current_user.id %>
                     <%= f.hidden_field :price, :value => current_user.price %>
                     <%= f.hidden_field :trial, :value => @subscription.trial %>
+                    <%= f.hidden_field :food_loss, :value => @subscription.food_loss %>
                     <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                 <% end %>
               <% end %>
