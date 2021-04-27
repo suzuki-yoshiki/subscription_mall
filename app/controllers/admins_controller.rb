@@ -106,6 +106,10 @@ class AdminsController < ApplicationController
     redirect_to admins_private_stores_index_url and return
   end
 
+  def private_store_ticket_buyer_list
+    @private_store_ticket_buyer_list =  User.where.not(issue_ticket_day: nil).where.not(private_store_id: nil).where(use_ticket_day: nil)
+  end
+
   private
 
     def set_user
