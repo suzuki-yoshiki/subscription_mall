@@ -17,6 +17,11 @@
                 <% end %>
                 <br>
                 <%= @ticket.subscription_name %>
+                <span class="badge badge-info">
+                  <% if @ticket.food_loss === true %>
+                    <%= "フードロス実施店舗" %>
+                  <% end %>
+                </span>
               <% elsif @ticket.private_store_name.present? %>
                 <span class="badge badge-primary">個人店舗</span>
                 <% if @private_store.trial == true %>
@@ -25,7 +30,12 @@
                   <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
                 <% end %>
                 <br>
-                <%= @ticket.private_store_name %>
+                <%= @ticket.private_store_name %><br>
+                <span class="badge badge-info">
+                  <% if @ticket.food_loss === true %>
+                    <%= "フードロス実施店舗" %>
+                  <% end %>
+                </span>
               <% end %>
               </h3>
               <div class="version">
@@ -63,7 +73,12 @@
                   <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
                 <% end %>
                 <br>         
-                <%= @ticket.subscription_name %>
+                <%= @ticket.subscription_name %><br>
+                <span class="badge badge-info">
+                  <% if @ticket.food_loss === true %>
+                    <%= "フードロス実施店舗" %>
+                  <% end %>
+                </span>
               <% elsif @ticket.private_store_name.present? %>
                 <span class="badge badge-primary">個人店舗</span>
                 <% if @private_store.trial == true %>
@@ -72,7 +87,12 @@
                   <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
                 <% end %>
                 <br>
-                <%= @ticket.private_store_name %>
+                <%= @ticket.private_store_name %><br>
+                <span class="badge badge-info">
+                  <% if @ticket.food_loss === true %>
+                    <%= "フードロス実施店舗" %>
+                  <% end %>
+                </span>
               <% end %>
               </h3>
               <div class="version">

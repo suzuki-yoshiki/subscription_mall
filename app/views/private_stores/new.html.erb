@@ -20,6 +20,12 @@
     <%= form.number_field :price, :required => true, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label "フードロスにご協力していただけますか？" %><br>
+    <%= form.select :food_loss, [['いいえ', false],['はい', true]], class: 'form-control' %>
+  </div>
+
+
   <div class="actions">
     <%= form.submit "個人店登録の審査申請" %>
   </div>

@@ -30,6 +30,11 @@
                   <span class="badge badge-warning">トライアルチケットでは利用できません。個人店プランをお買い求めください。</span>
                 <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @private_store.name %></h3>
+                <span class="badge badge-info">
+                  <% if @private_store.food_loss === true %>
+                    <%= "フードロス実施店舗" %>
+                  <% end %>
+                </span>
                 <p class="font-weight-normal mb-2">
                   <% if @private_store.address.present? %>
                     住所：<%= @private_store.address %>
@@ -237,12 +242,20 @@
 
         <div class="font-weight-normal">
 
-          <p class="ml-xl-0 ml-4">
-            <strong>商品紹介: </strong><%= @private_store.detail %></p>
-          <p class="ml-xl-0 ml-4">
-            <strong>店舗情報: </strong><%= @private_store.private_store_detail %></p>
-          <p class="ml-xl-0 ml-4">
-            <strong>加入プラン: </strong><%= @private_store.price %></p>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>商品紹介: </strong><%= @private_store.detail %></h2>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>店舗情報: </strong><%= @private_store.private_store_detail %></h2>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>デリバリー: </strong>
+            <% if @private_store.delivery === true %>
+              <%= "可" %>
+            <% elsif @private_store.delivery === false %>
+              <%= "不可" %>
+            <% end %>
+          </h2>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>加入プラン: </strong><%= @private_store.price %></h2>
 
           <%# google map %>
           <%= render "maps/private_store_subsc" %>

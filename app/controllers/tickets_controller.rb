@@ -116,7 +116,7 @@ class TicketsController < ApplicationController
   private
 
     def ticket_params
-	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :trial, :trial_check, :trial_last_check, :trial_count, :subscription_name, :category_id, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
+	    params.require(:ticket).permit(:owner_name, :owner_email, :owner_phone_number, :owner_store_information, :price, :food_loss, :trial, :trial_check, :trial_last_check, :trial_count, :subscription_name, :category_id, :private_store_name, :subscription_fee, :issue_ticket_day, :user_id)
     end
 
     def edit_user_ticket

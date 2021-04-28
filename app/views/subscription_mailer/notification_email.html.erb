@@ -13,10 +13,16 @@
     </h1>
     <p>
       <% if @new == "true" %>
-        加盟店舗 <%= @subscription.name %> が審査申し込みがありました。<br>
-        お店URL<%= @subscription.site %> <br>
+        加盟店舗 「<%= @subscription.name %> 」が審査申し込みがありました。<br>
+        お店URL「<%= @subscription.site %> 」<br>
+        フードロスにご協力「
+        <% if @subscription.food_loss === true %>
+          <%= "はい" %>
+        <% elsif @subscription.food_loss === false %>
+          <%= "いいえ" %>
+        <% end %>」 <br>
         加盟店舗の審査を完了させてください。<br>
-        <%= @url %>
+        「<%= @url %>」
       <% else %>
         加盟店舗 <%= @subscription.name %> が編集されました。<br>
         お店URL<%= @subscription.site %> <br>
