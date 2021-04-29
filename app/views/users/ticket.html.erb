@@ -17,12 +17,6 @@
     <% elsif @subscription.trial == false %>
       <span class="badge badge-warning">トライアルチケットでは利用できません。</span>
     <% end %>
-    <% if @subscription.trial == true && current_user.price == 1000 %>
-      <span class="badge badge-warning">トライアル</span>
-      <span class="badge badge-success">加盟店</span>
-    <% elsif @subscription.trial == false %>
-      <span class="badge badge-success">加盟店</span>
-    <% end %>
     <h3 class="font-weight-bold pb-2 mb-4"><%= @subscription.name %></h3>
     <span class="badge badge-info">
       <% if @subscription.food_loss === true %>
@@ -54,9 +48,9 @@
               <% if (Date.today.wday === 6 || Date.today.wday === 0) %> <%#チケット利用2回目以降でプランが1000円かつ土日の場合%>
                 <%= "お客様のプランでは土日にチケットをご利用する事ができません。" %>
               <% else %>
-                <% if current_user.ticket.trial_count === 3 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が3回終えたの場合%>
+                <% if current_user.ticket.trial_count.to_i === 3 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が3回終えたの場合%>
                    <%= "トライアルプランは3回利用済みです。" %>
-                <% elsif current_user.ticket.trial_count === 1 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が1回終えたの場合%>
+                <% elsif current_user.ticket.trial_count.to_i === 1 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が1回終えたの場合%>
                    <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
                           <%= f.hidden_field :owner_email, :value => email %>
@@ -72,7 +66,7 @@
                           <%= f.hidden_field :food_loss, :value => @subscription.food_loss %>
                           <%= f.submit "チケットを発券する", class: "btn btn-outline-success btn-rounded waves-effect" %>
                       <% end %>
-                  <% elsif current_user.ticket.trial_count === 2 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が2回終えたの場合%>
+                  <% elsif current_user.ticket.trial_count.to_i === 2 %> <%#チケット利用2回目以降でプランが1000円かつチケット利用が2回終えたの場合%>
                      <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                           <%= f.hidden_field :owner_name, :value => @owner.name %>
                           <%= f.hidden_field :owner_email, :value => email %>
@@ -90,7 +84,7 @@
                       <% end %>
                   <% end %>
                 <% end %>
-            <% elsif (Date.today.wday != 6) && (Date.today.wday != 0) && current_user.select_trial && (current_user.trial_count === 2) %> <%#プランが1000かつ土日でない場合かつトライアルの利用回数が2の場合%>
+            <% elsif (Date.today.wday != 6) && (Date.today.wday != 0) && current_user.select_trial && (current_user.ticket.trial_count.to_i === 2) %> <%#プランが1000かつ土日でない場合かつトライアルの利用回数が2の場合%>
                <%= form_with(model: Ticket, url: ticket_update_after_second_time_path(current_user), local: true, method: :patch) do |f| %>
                     <%= f.hidden_field :owner_name, :value => @owner.name %>
                     <%= f.hidden_field :owner_email, :value => email %>
