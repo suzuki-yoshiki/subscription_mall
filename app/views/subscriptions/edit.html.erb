@@ -123,8 +123,13 @@
   </div>
 
   <div class="field">
-    <%= form.label "準備にかかる時間の目安(分)" %>
+    <%= form.label "テイクアウト準備にかかる時間の目安(分)" %>
     <%= form.number_field :preparation_time, value: @subscription.preparation_time, class: 'form-control col-sm-2' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "デリバリー" %><br>
+    <%= form.select :delivery, [['不可', false],['可', true]], { selected: @subscription.delivery }, class: 'form-control col-sm-2' %>
   </div>
 
   <div class="actions">

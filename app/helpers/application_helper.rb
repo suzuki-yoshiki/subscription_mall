@@ -8,6 +8,14 @@ module ApplicationHelper
     text
   end
 
+  def categories_list(categories)
+    categories_list= []
+    categories.each do |category|
+      categories_list.push([category.name, category.id])
+    end
+    return categories_list
+  end
+
   def full_title(page_name = "")
     base_title = "Subscription_mall"
     if page_name.empty?

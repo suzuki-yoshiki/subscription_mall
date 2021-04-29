@@ -132,6 +132,11 @@
     <%= form.number_field :preparation_time, value: @private_store.preparation_time, class: 'form-control col-sm-2' %>
   </div>
 
+  <div class="field">
+    <%= form.label "デリバリー" %><br>
+    <%= form.select :delivery, [['不可', false],['可', true]], { selected: @private_store.delivery }, class: 'form-control col-sm-2' %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

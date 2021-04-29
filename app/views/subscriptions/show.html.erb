@@ -29,7 +29,14 @@
                 <% elsif @subscription.trial == false %>
                   <span class="badge badge-warning">トライアルチケットでは利用できません。加盟店プランをお買い求めください。</span>
                 <% end %>
-                <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
+                <h3 class="card-title font-weight-bold mt-2 mb-1">
+                  <%= @subscription.name %>
+                </h3>
+                <span class="badge badge-info">
+                  <% if @subscription.food_loss === true %>
+                    <%= "フードロス実施店舗" %>
+                  <% end %>
+                </span>
                 <p class="font-weight-normal mb-2">
                   <% if @subscription.address.present? %>
                     住所：<%= @subscription.address %>
@@ -56,7 +63,7 @@
                   <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% end %>
               <% elsif current_user.present? %>
-                <%= link_to "サブスク決済を始める", subscription_plan_path(current_user, @subscription, @subscription.price), class: "btn-gradient-3d-simple1" %>
+                <%= link_to "サブスク決済を始める", subscription_plan_path(@subscription, @subscription.price), class: "btn-gradient-3d-simple1" %>
               <% elsif current_owner.present? %>
                 <%= link_to "サブスク一覧へ", owner_subscriptions_path(current_owner), class: "btn-gradient-3d-simple1" %>
                 <%= link_to "サブスクカスタマイズ", edit_owner_subscription_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple1" %>
@@ -239,6 +246,14 @@
             <strong>商品紹介: </strong><%= @subscription.detail %></h2>
           <h2 class="ml-xl-0 ml-4">
             <strong>店舗情報: </strong><%= @subscription.subscription_detail %></h2>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>デリバリー: </strong>
+            <% if @subscription.delivery === true %>
+              <%= "可" %>
+            <% elsif @subscription.delivery === false %>
+              <%= "不可" %>
+            <% end %>
+          </h2>
           <h2 class="ml-xl-0 ml-4">
             <strong>加入プラン: </strong><%= @subscription.price %></h2>
 

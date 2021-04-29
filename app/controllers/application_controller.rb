@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include ApplicationHelper
-  include CategoriesHelper
+  # include CategoriesHelper
   #本番環境ででErrorが発生したらrescue500,rescue404で処理を行う
   # if Rails.env.production?
   #   rescue_from StandardError, with: :rescue500
@@ -77,10 +77,10 @@ class ApplicationController < ActionController::Base
         current_user.update!(customer_id: "", price: "")
       end
       if current_user.trial_stripe_success
-	current_user.update!(trial_stripe_success: false)
+        current_user.update!(trial_stripe_success: false)
       end
       if current_user.select_trial
-	current_user.update!(plan_canceled: true)
+        current_user.update!(plan_canceled: true)
       end
     end
   end
