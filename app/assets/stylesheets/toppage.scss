@@ -51,7 +51,7 @@
     // text-shadow:2px 2px 3px rgb(229, 226, 226);
     letter-spacing: 0.05em;
     position: absolute;
-    left: -50px;
+    left: -100px;
     top: 50px;
   }
 
@@ -163,25 +163,24 @@
   .owner-btn {
     position: absolute;
     left: 180px;
-    top: 550px;
+    top: 450px;
   }
-  p.text1 {
+  h1.text1 {
+    margin-bottom: 150px;
+    margin-top: -110px;
+    margin-right: 100px;
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+  }
+  h1.text2 {
     margin-bottom: 120px;
-    margin-top: -100px;
+    margin-top: -140px;
     margin-right: 100px;
     font-size: 20px;
     text-align: center;
-  }
-  p.text2 {
-    margin-bottom: 120px;
-    margin-top: -100px;
-    margin-right: 100px;
-    font-size: 20px;
-    text-align: center;
-  }
-  .text2 {
-    margin-bottom: 100px;
-    margin-top: -90px;
+    color: white;
   }
 
       /* レスポンシブWebデザインのブレークポイント */
