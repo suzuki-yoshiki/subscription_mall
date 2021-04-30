@@ -110,6 +110,7 @@ class SubscriptionsController < ApplicationController
     @categories = Category.all
     @subscription.images.build
     @instablog = Instablog.new
+    @pays = Stripe::Plan.list
   end
 
   # PATCH/PUT /subscriptions/1
