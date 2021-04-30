@@ -31,8 +31,10 @@
                 <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @private_store.name %></h3>
                 <span class="badge badge-info">
-                  <% if @private_store.food_loss === true %>
-                    <%= "フードロス実施店舗" %>
+                  <% if @private_store.food_loss.present? %>
+                    <% if @private_store.food_loss === true %>
+                      <%= "フードロス実施店舗" %>
+                    <% end %>
                   <% end %>
                 </span>
                 <p class="font-weight-normal mb-2">

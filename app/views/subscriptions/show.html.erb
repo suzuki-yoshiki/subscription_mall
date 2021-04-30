@@ -33,8 +33,10 @@
                   <%= @subscription.name %>
                 </h3>
                 <span class="badge badge-info">
-                  <% if @subscription.food_loss === true %>
-                    <%= "フードロス実施店舗" %>
+                  <% if @subscription.food_loss.present? %>
+                    <% if @subscription.food_loss === true %>
+                      <%= "フードロス実施店舗" %>
+                    <% end %>
                   <% end %>
                 </span>
                 <p class="font-weight-normal mb-2">
