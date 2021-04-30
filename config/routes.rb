@@ -148,6 +148,7 @@ Rails.application.routes.draw do
         #delete "plans_destroy", to: "private_store_user_plans#destroy", as: 'plans_destroy'
         get '/owner_private_stores', to: "private_stores#owner_private_stores", as: :owner_private_stores
         post :takeout
+        post :strip
       end
     end
   end
@@ -185,9 +186,6 @@ Rails.application.routes.draw do
       # post "sms_auth", to: "sms#confirm"
     end
     get :search, on: :collection # ユーザーの名前であいまい検索 追加分
-    # get 'subscriptions/:id/edit_favorite', to: "subscriptions#edit_favorite", as: :edit_favorite#お気に入り店舗に加えるたり外すよう
-    # patch 'subscriptions/:id/update_recommend', to: "subscriptions#update_favorite", as: :update_favorite #お気に入り店舗に加えるたり外すよう
-    # get 'subscriptions/favorite', to: 'subscriptions#favorite', as: :favorite_subscriptions#おすすめショップ
     resources :tickets#サブスクチケット
     resources :reviews#利用者レビュー
       get "thanks", on: :member#会員完了通知仮面
@@ -211,7 +209,6 @@ Rails.application.routes.draw do
       get "update_confirm", to: "private_store_user_plans#update_confirm"
     end
   end
-  #get  "/private_store_user_plan/:id", to: "private_store_user_plans#new"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #
 
