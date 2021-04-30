@@ -252,14 +252,18 @@
             <strong>商品紹介: </strong><%= @private_store.detail %></h2>
           <h2 class="ml-xl-0 ml-4">
             <strong>店舗情報: </strong><%= @private_store.private_store_detail %></h2>
-          <h2 class="ml-xl-0 ml-4">
+          <%
+=begin%>
+ <h2 class="ml-xl-0 ml-4">
             <strong>デリバリー: </strong>
             <% if @private_store.delivery === true %>
               <%= "可" %>
             <% elsif @private_store.delivery === false %>
               <%= "不可" %>
             <% end %>
-          </h2>
+          </h2> 
+<%
+=end%>
           <h2 class="ml-xl-0 ml-4">
             <strong>加入プラン: </strong><%= @private_store.price %></h2>
 
