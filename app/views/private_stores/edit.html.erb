@@ -122,7 +122,9 @@
     <%= form.select :trial, [['不参加', false],['参加', true]], { selected: false }, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <%
+=begin%>
+ <div class="field">
     <%= form.label "テイクアウト" %><br>
     <%= form.select :takeout, [['不可', false],['可', true]], { selected: @private_store.takeout }, class: 'form-control col-sm-2' %>
   </div>
@@ -135,7 +137,9 @@
   <div class="field">
     <%= form.label "デリバリー" %><br>
     <%= form.select :delivery, [['不可', false],['可', true]], { selected: @private_store.delivery }, class: 'form-control col-sm-2' %>
-  </div>
+  </div> 
+<%
+=end%>
 
   <div class="actions">
     <%= form.submit %>
