@@ -108,6 +108,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :プラン %> <span class="must">必須</span><br/>
+    <%= form.collection_select(:price, @pays, :id, :amount, include_blank: "加入するプランを選択", :required => true, class: 'form-control') %>
+  </div>
+
+
+
+  <div class="field">
     <%= form.label :加入プラン %> <span class="must">必須</span><br/>
     <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
   </div>
@@ -130,11 +137,6 @@
   <div class="field">
     <%= form.label "デリバリー" %><br>
     <%= form.select :delivery, [['不可', false],['可', true]], { selected: @subscription.delivery }, class: 'form-control col-sm-2' %>
-  </div>
-
-  <div class="field">
-    <%= form.label "フードロスにご協力していただけますか？" %><br>
-    <%= form.select :food_loss, [['いいえ', false],['はい', true]], { selected: @subscription.food_loss }, class: 'form-control' %>
   </div>
 
   <div class="actions">

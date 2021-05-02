@@ -188,6 +188,21 @@ class PrivateStoresController < ApplicationController
     end
   end
 
+  def strip
+      # サブスク登録
+      @private_store_plan = Stripe::Checkout::Session.create(
+        success_url: private_store_success_url,
+        cancel_url: private_store_cancel_url,
+        payment_method_types: ['card'],
+        customer_email: current_user.email,
+        line_items: [{
+          price: params[:session],
+          quantity: 1},
+        ],
+        mode: 'subscription',
+      )
+  end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_private_store

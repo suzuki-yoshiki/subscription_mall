@@ -113,74 +113,6 @@ answer: "ログイン後、マイカウント下の「解約について」ボ�
 
 puts "Question Created"
 
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 1,
-#                               subscription_id: 1,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 2,
-#                               subscription_id: 1,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 1,
-#                               subscription_id: 2,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                             category_id: 2,
-#                             subscription_id: 2,
-#                           )
-# CategorySubscription.create!(owner_id: 1,
-#                             category_id: 3,
-#                             subscription_id: 3,
-#                           )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 4,
-#                           subscription_id: 3,
-#                         )
-
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 3,
-#                               subscription_id: 4,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 4,
-#                               subscription_id: 4,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                               category_id: 5,
-#                               subscription_id: 5,
-#                             )
-# CategorySubscription.create!(owner_id: 1,
-#                             category_id: 6,
-#                             subscription_id: 5,
-#                           )
-# CategorySubscription.create!(owner_id: 1,
-#                             category_id: 5,
-#                             subscription_id: 6,
-#                           )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 6,
-#                           subscription_id: 6,
-#                         )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 13,
-#                           subscription_id: 7,
-#                         )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 14,
-#                           subscription_id: 7,
-#                         )
-# CategorySubscription.create!(owner_id: 1,
-#                           category_id: 15,
-#                           subscription_id: 8,
-#                         )
-# CategorySubscription.create!(owner_id: 1,
-#                         category_id: 16,
-#                         subscription_id: 8,
-#                       )
-# puts "CategorySubscription Created"
-
-
 
 
 # Subscription.create!(
@@ -229,6 +161,8 @@ Subscription.create!(
   address: "神奈川県相模原市中央区相模原３-2-5 第一商事ビル第三 ２Ｆ",
   takeout: true,
   preparation_time: 15,
+  food_loss: true,
+  delivery: true,
 )
 
 Subscription.create!(
@@ -245,6 +179,8 @@ Subscription.create!(
   price: "18000",
   image_subscription: "karaage.jpeg",
   address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
+  food_loss: true,
+  delivery: true,
 )
 
 # Subscription.create!(
@@ -295,6 +231,8 @@ Subscription.create!(
   price: "100000",
   image_subscription: "karaage.jpeg",
   address: "東京都町田市原町田6-13-15",
+  food_loss: true,
+  delivery: true,
 )
 
 Subscription.create!(
@@ -311,6 +249,8 @@ Subscription.create!(
   price: "11000",
   image_subscription: "karaage.jpeg",
   address: "東京都町田市森野１－３９－１　グランドゥールビル　5F",
+  food_loss: true,
+  delivery: true,
 )
 
 
