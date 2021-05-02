@@ -240,8 +240,8 @@ class PrivateStoresController < ApplicationController
                                               :trial,
                                               :takeout,
                                               :preparation_time,
-                                              :food_loss,
-                                              :delivery,
+                                              #:food_loss,
+                                              #:delivery,
                                               # { :images_attributes=> [:private_store_id, :private_store_image]},
                                               #{ :category_ids=> [] }
                                             )

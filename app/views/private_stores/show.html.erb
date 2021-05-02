@@ -31,9 +31,9 @@
                 <% end %>
                 <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @private_store.name %></h3>
                 <span class="badge badge-info">
-                  <% if @private_store.food_loss === true %>
+                  <!--% if @private_store.food_loss === true %-->
                     <%= "フードロス実施店舗" %>
-                  <% end %>
+                  <!--% end %-->
                 </span>
                 <p class="font-weight-normal mb-2">
                   <% if @private_store.address.present? %>
@@ -248,11 +248,11 @@
             <strong>店舗情報: </strong><%= @private_store.private_store_detail %></h2>
           <h2 class="ml-xl-0 ml-4">
             <strong>デリバリー: </strong>
-            <% if @private_store.delivery === true %>
+            <!--% if @private_store.delivery === true %-->
               <%= "可" %>
-            <% elsif @private_store.delivery === false %>
+            <!--% elsif @private_store.delivery === false %-->
               <%= "不可" %>
-            <% end %>
+            <!--% end %-->
           </h2>
           <h2 class="ml-xl-0 ml-4">
             <strong>加入プラン: </strong><%= @private_store.price %></h2>

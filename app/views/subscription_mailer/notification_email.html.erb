@@ -16,11 +16,11 @@
         加盟店舗 「<%= @subscription.name %> 」が審査申し込みがありました。<br>
         お店URL「<%= @subscription.site %> 」<br>
         フードロスにご協力「
-        <% if @subscription.food_loss === true %>
+        <!--% if @subscription.food_loss === true %-->
           <%= "はい" %>
-        <% elsif @subscription.food_loss === false %>
+        <!--% elsif @subscription.food_loss === false %-->
           <%= "いいえ" %>
-        <% end %>」 <br>
+        <!--% end %-->」 <br>
         加盟店舗の審査を完了させてください。<br>
         「<%= @url %>」
       <% else %>

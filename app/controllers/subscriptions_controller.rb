@@ -235,8 +235,8 @@ class SubscriptionsController < ApplicationController
                                               :trial,
                                               :takeout,
                                               :preparation_time,
-                                              :food_loss,
-                                              :delivery,
+                                              #:food_loss,
+                                              #:delivery,
                                               # { :images_attributes=> [:subscription_id, :subscription_image]},
                                               # { :category_ids=> [] }
                                             )
