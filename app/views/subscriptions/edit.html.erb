@@ -129,12 +129,12 @@
 
   <div class="field">
     <%= form.label "デリバリー" %><br>
-    <!--%= form.select :delivery, [['不可', false],['可', true]], { selected: @subscription.delivery }, class: 'form-control col-sm-2' %-->
+    <%= form.select :delivery, [['不可', false],['可', true]], { selected: @subscription.delivery }, class: 'form-control col-sm-2' %>
   </div>
 
   <div class="field">
     <%= form.label "フードロスにご協力していただけますか？" %><br>
-    <!--%= form.select :food_loss, [['いいえ', false],['はい', true]], { selected: @subscription.food_loss }, class: 'form-control' %-->
+    <%= form.select :food_loss, [['いいえ', false],['はい', true]], { selected: @subscription.food_loss }, class: 'form-control' %>
   </div>
 
   <div class="actions">

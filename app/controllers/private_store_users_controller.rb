@@ -60,8 +60,6 @@ class PrivateStoreUsersController < ApplicationController
     #@owner = Owner.find(params[:id])
     @private_store = PrivateStore.find(params[:id])
     @owner = Owner.find(@private_store.owner_id)
-    debugger
-    current_user.ticket.trial_count
   end
 
   # ユーザーの名前をあいまい検索機能

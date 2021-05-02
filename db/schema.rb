@@ -218,6 +218,8 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.boolean "select_trial", default: false
     t.boolean "trial"
     t.boolean "takeout", default: false
+    t.boolean "food_loss", default: true
+    t.boolean "delivery", default: false
     t.integer "preparation_time", default: 0
     t.bigint "owner_id"
     t.bigint "user_id"
@@ -305,6 +307,8 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.float "longitude", limit: 24
     t.boolean "trial"
     t.boolean "takeout", default: false
+    t.boolean "food_loss", default: true
+    t.boolean "delivery", default: false
     t.integer "preparation_time", default: 0
     t.bigint "owner_id"
     t.bigint "user_id"
@@ -363,6 +367,7 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.boolean "trial"
+    t.boolean "food_loss"
     t.integer "price"
     t.string "trial_check"
     t.string "trial_last_check"

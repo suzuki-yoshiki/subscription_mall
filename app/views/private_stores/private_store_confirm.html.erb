@@ -6,7 +6,7 @@
     <%= form_with(model: @private_store, url: private_stores_private_store_judging_path(owner_id: @owner.id, id: @private_store), local: true) do |f| %>
       <%= f.hidden_field :owner_id, :value => @owner.id %>
       <%= f.hidden_field :situation, :value => "個人店申請中" %>
-      <!--%= f.hidden_field :food_loss, :value => @private_store.food_loss %-->
+      <%= f.hidden_field :food_loss, :value => @private_store.food_loss %>
       <div class="field">
         <%= f.label :name %><%= f.text_field :name, value: @private_store.name, readonly: true, class: 'form-control' %>
       </div>
@@ -18,7 +18,7 @@
       </div>
       <div class="field">
         <%= f.label "フードロスにご協力していただけますか？" %>
-        <!--%= f.select :food_loss, [['はい', true],['いいえ', false]], value: @private_store.food_loss, class: 'form-control' %-->
+        <%= f.select :food_loss, [['はい', true],['いいえ', false]], value: @private_store.food_loss, class: 'form-control' %>
       </div>
       
       <div class="field mb-3">

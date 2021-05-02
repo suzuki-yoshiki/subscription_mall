@@ -33,9 +33,9 @@
                   <%= @subscription.name %>
                 </h3>
                 <span class="badge badge-info">
-                  <!--% if @subscription.food_loss === true %-->
+                  <% if @subscription.food_loss === true %>
                     <%= "フードロス実施店舗" %>
-                  <!--% end %-->
+                  <% end %>
                 </span>
                 <p class="font-weight-normal mb-2">
                   <% if @subscription.address.present? %>
@@ -250,11 +250,11 @@
             <strong>店舗情報: </strong><%= @subscription.subscription_detail %></h2>
           <h2 class="ml-xl-0 ml-4">
             <strong>デリバリー: </strong>
-            <!--% if @subscription.delivery === true %-->
+            <% if @subscription.delivery === true %>
               <%= "可" %>
-            <!--% elsif @subscription.delivery === false %-->
+            <% elsif @subscription.delivery === false %>
               <%= "不可" %>
-            <!--% end %-->
+            <% end %>
           </h2>
           <h2 class="ml-xl-0 ml-4">
             <strong>加入プラン: </strong><%= @subscription.price %></h2>

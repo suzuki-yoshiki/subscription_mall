@@ -14,7 +14,7 @@
       </div>
       <div class="field">
         <%= f.label "フードロスにご協力していただけますか？" %>
-        <!--%= f.select :food_loss, [['はい', true],['いいえ', false]], value: @subscription.food_loss, class: 'form-control' %-->
+        <%= f.select :food_loss, [['はい', true],['いいえ', false]], value: @subscription.food_loss, class: 'form-control' %>
       </div>
       <div class="field mb-3">
         <%= f.submit "送信", class: "btn btn-primary btn-block" %>
