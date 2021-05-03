@@ -30,9 +30,9 @@ $('#customButton').on('click', function(e) {
   var amount = $("#amount").val() * 100;
   // Open Checkout with further options
   handler.open({
-    name: '巡グルメ決済',
-    description: '<%= @private_store.name %>',
-    amount: '<%= @private_store.price %> '
+    name: '<%= @private_store.name %>',
+    description: '<%= "￥#{@private_store.price}/月" %>',
+    amount: amount
   });
   e.preventDefault();
 });
