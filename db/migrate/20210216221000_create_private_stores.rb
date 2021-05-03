@@ -41,6 +41,10 @@ class CreatePrivateStores < ActiveRecord::Migration[5.1]
       t.string :product_id
       t.boolean :select_trial, default: false
       t.boolean :trial
+      t.boolean :takeout, default: false
+      t.boolean :food_loss, default: true
+      t.boolean :delivery, default: false
+      t.integer :preparation_time, default: 0
 
 
       t.references :owner, foreign_key: true

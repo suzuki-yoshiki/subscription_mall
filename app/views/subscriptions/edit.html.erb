@@ -1,6 +1,6 @@
 <% provide(:title, "サブスクページ編集") %>
 
-<h1 class="brand-color display-4 mt-6 mb-6">サブスクページ編集</h1>
+<h1 class="brand-color display-4 mt-6 mb-6">加盟店サブスクページ編集</h1>
 
 <%= form_with(model: @subscription, url: owner_subscription_path(@subscription, owner_id: @owner.id), multipart: true, local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
@@ -108,6 +108,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :プラン %> <span class="must">必須</span><br/>
+    <%= form.collection_select(:price, @pays, :id, :amount, include_blank: "加入するプランを選択", :required => true, class: 'form-control') %>
+  </div>
+
+
+
+  <div class="field">
     <%= form.label :加入プラン %> <span class="must">必須</span><br/>
     <%= form.select :price, Subscription.prices.keys, { include_blank: "加入するプランを選択してください"}, class: 'form-control' %>
   </div>
@@ -117,6 +124,20 @@
     <%= form.select :trial, [['不参加', false],['参加', true]], { selected: false }, class: 'form-control' %>
   </div>
 
+  <div class="field">
+    <%= form.label "テイクアウト" %><br>
+    <%= form.select :takeout, [['不可', false],['可', true]], { selected: @subscription.takeout }, class: 'form-control col-sm-2' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "テイクアウト準備にかかる時間の目安(分)" %>
+    <%= form.number_field :preparation_time, value: @subscription.preparation_time, class: 'form-control col-sm-2' %>
+  </div>
+
+  <div class="field">
+    <%= form.label "デリバリー" %><br>
+    <%= form.select :delivery, [['不可', false],['可', true]], { selected: @subscription.delivery }, class: 'form-control col-sm-2' %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

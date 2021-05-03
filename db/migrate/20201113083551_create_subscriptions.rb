@@ -39,6 +39,10 @@ class CreateSubscriptions < ActiveRecord::Migration[5.1]
       t.float :latitude
       t.float :longitude
       t.boolean :trial
+      t.boolean :takeout, default: false
+      t.boolean :food_loss, default: true
+      t.boolean :delivery, default: false
+      t.integer :preparation_time, default: 0
 
       t.references :owner, foreign_key: true
       t.references :user, foreign_key: true

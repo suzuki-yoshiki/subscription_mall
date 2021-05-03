@@ -29,7 +29,14 @@
                 <% elsif @subscription.trial == false %>
                   <span class="badge badge-warning">トライアルチケットでは利用できません。加盟店プランをお買い求めください。</span>
                 <% end %>
-                <h3 class="card-title font-weight-bold mt-2 mb-1"><%= @subscription.name %></h3>
+                <h3 class="card-title font-weight-bold mt-2 mb-1">
+                  <%= @subscription.name %>
+                </h3>
+                <span class="badge badge-info">
+                  <% if @subscription.food_loss === true %>
+                    <%= "フードロス実施店舗" %>
+                  <% end %>
+                </span>
                 <p class="font-weight-normal mb-2">
                   <% if @subscription.address.present? %>
                     住所：<%= @subscription.address %>
@@ -40,18 +47,18 @@
                     テイクアウトTEL：<%= @subscription.phone_number %>
                   <% else %>
                     <p></p>
-                  <% end %><br>
+                  <% end %>
+                </p><br>
               <% if @payment.present? %>
                 <% if @subscription.trial == true && current_user.price == 1000 %>
                   <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>
+                  <%= render "takeout" if @subscription.takeout? %>
                 <% elsif @subscription.trial == false && current_user.price == 1000 %>
                   <%= link_to "トライアルプランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】トライアルを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
-                <% elsif @subscription.price.to_i < current_user.price %>
-                  <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1" %>
-                  <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
-                <% elsif @subscription.price.to_i == current_user.price %>
-                  <%= link_to "チケットを発券する", use_ticket_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple1" %>
-                  <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
+                <% elsif @subscription.price.to_i <= current_user.price %>
+                  <%= link_to "チケットを発券する", use_ticket_path(@subscription), class: "btn-gradient-3d-simple1 mb-2" %>
+                  <%= render "takeout" if @subscription.takeout? %>
+                  <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1 mb-2" %>
                 <% else %>
                   <%= link_to "加盟店プランを解除する", user_plan_path, method: :delete, data: { confirm: "【確認】サブスクを解除してよろしいでしょうか？" }, class: "btn-gradient-3d-simple1" %>
                 <% end %>
@@ -63,9 +70,9 @@
               <% elsif current_admin.present? %>
                 <%= link_to "サブスクカスタマイズ", edit_owner_subscription_path(@subscription, @owner, owner_id: @subscription.owner_id), class: "btn-gradient-3d-simple1" %>
                 <% if @subscription.recommend == true %>
-                  <%= link_to "おすすめ店舗から削除する", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "おすすめ店舗から削除", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple1" %>
                 <% elsif @subscription.recommend == false %>
-                  <%= link_to "おすすめ店舗に加える", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple1" %>
+                  <%= link_to "おすすめ店舗に追加", edit_recommend_owner_subscription_path(current_admin), class: "btn-gradient-3d-simple1" %>
                 <% end %>
               <% else %>
                 <%= link_to "ログインしてサブスクを開始", new_user_session_path, class: "btn-gradient-3d-simple1" %>
@@ -226,7 +233,7 @@
 
       <div class="col-lg-5 text-center text-md-left">
 
-        <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4"><%= @subscription.name %></h2>
+        <h1 class="display-5 h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4"><%= @subscription.name %></h1>
         <span class="badge badge-danger product mb-4 ml-xl-0 ml-4">NEW</span>
 
         <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
@@ -237,12 +244,20 @@
 
         <div class="font-weight-normal">
 
-          <p class="ml-xl-0 ml-4">
-            <strong>商品紹介: </strong><%= @subscription.detail %></p>
-          <p class="ml-xl-0 ml-4">
-            <strong>店舗情報: </strong><%= @subscription.subscription_detail %></p>
-          <p class="ml-xl-0 ml-4">
-            <strong>加入プラン: </strong><%= @subscription.price %></p>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>商品紹介: </strong><%= @subscription.detail %></h2>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>店舗情報: </strong><%= @subscription.subscription_detail %></h2>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>デリバリー: </strong>
+            <% if @subscription.delivery === true %>
+              <%= "可" %>
+            <% elsif @subscription.delivery === false %>
+              <%= "不可" %>
+            <% end %>
+          </h2>
+          <h2 class="ml-xl-0 ml-4">
+            <strong>加入プラン: </strong><%= @subscription.price %></h2>
 
           <%# google map %>
           <%= render "maps/subsc" %>

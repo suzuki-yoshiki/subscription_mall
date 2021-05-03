@@ -6,6 +6,7 @@ class PrivateStoreUserPlansController < ApplicationController
   before_action :authenticate_user!
   before_action :payment_check, only: %i(new edit confirm update_confirm update destroy)
   before_action :payment_planning_delete, only: :destroy
+  before_action :current_user_email_present?, only: %i(new subscription_plans set_plan_by_price)
   # before_action :sms_auth_false?, only: %i(new confirm destroy)
 
   # stripe決済成功時
@@ -117,7 +118,7 @@ class PrivateStoreUserPlansController < ApplicationController
       end
     end
   end
-	  
+
   # サブスク新規登録確認画面
   def confirm
     current_user.update!(session_id: @private_store_plan.id, session_price: @private_store_plan.amount_subtotal)
@@ -192,7 +193,7 @@ class PrivateStoreUserPlansController < ApplicationController
     def set_plans
       @plans = []
       Stripe::Plan.list.reverse_each do |plan|
-	p "planは#{plan}"
+        p "planは#{plan}"
         p "plan.idは#{plan.id}"
         p "plan.metadtaは#{plan.metadata}"
         if Rails.env.development? || Rails.env.test?
@@ -207,7 +208,7 @@ class PrivateStoreUserPlansController < ApplicationController
       if params[:private_store].to_i == -1
         @private_store = nil
       else
-        @private_store = Subscription.find(params[:private_store])
+        @private_store = PrivateStore.find(params[:private_store])
       end
       if Rails.env.development? || Rails.env.test?
         if @private_store.present? && @private_store.trial == true && current_user.select_trial

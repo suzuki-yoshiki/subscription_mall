@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend]
-  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend, :subscription_confirm, :subscription_judging]
+  before_action :set_subscription, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :takeout]
+  before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_subscriptions, :edit_recommend, :update_recommend, :subscription_confirm, :subscription_judging, :takeout]
   before_action :create, only: [:subscription_judging]
   before_action :set_category, only: [:edit, :update, :destroy, :edit_recommend, :update_recommend]
   before_action :payment_check, only: %i(show)
@@ -21,7 +21,10 @@ class SubscriptionsController < ApplicationController
   def subscription_all_shop
     @subscriptions = Subscription.where(admin_last_check: "加盟承認審査済み")
     @subscriptions_count = Subscription.where(admin_last_check: "加盟承認審査済み").count
-    current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
+    @subscriptions = Subscription.all
+    if current_user.present?
+      current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
+    end
   end
 
   def show
@@ -107,6 +110,7 @@ class SubscriptionsController < ApplicationController
     @categories = Category.all
     @subscription.images.build
     @instablog = Instablog.new
+    @pays = Stripe::Plan.list
   end
 
   # PATCH/PUT /subscriptions/1
@@ -146,6 +150,42 @@ class SubscriptionsController < ApplicationController
   end
 
   def company_profile
+  end
+
+  # テイクアウト注文時(POST)
+  def takeout
+    if @subscription.takeout?
+      ticket = Ticket.find_by(user_id: current_user.id)
+      if ticket.present?
+        ticket.update!(
+          owner_name: @owner.name,
+          owner_email: @owner.email,
+          owner_phone_number: @owner.phone_number,
+          owner_store_information: @owner.store_information,
+          price: @subscription.price,
+          subscription_name: @subscription.name,
+          category_id: @subscription.category_id,
+          issue_ticket_day: Date.today,
+          user_id: current_user.id,
+        ) 
+      else
+        ticket = Ticket.create!(
+          owner_name: @owner.name,
+          owner_email: @owner.email,
+          owner_phone_number: @owner.phone_number,
+          owner_store_information: @owner.store_information,
+          price: @subscription.price,
+          subscription_name: @subscription.name,
+          category_id: @subscription.category_id,
+          issue_ticket_day: Date.today,
+          user_id: current_user.id,
+        ) 
+      end
+      redirect_to user_ticket_url(ticket, user_id: current_user.id)
+      SubscriptionMailer.with(id: current_user.id, subscription_id: @subscription.id).takeout_email.deliver_now
+    else
+      redirect_to like_lunch_category_url(@subscription.category_id)
+    end
   end
 
     private
@@ -194,21 +234,17 @@ class SubscriptionsController < ApplicationController
                                               :category_id,
                                               :owner_id,
                                               :trial,
+                                              :takeout,
+                                              :preparation_time,
+                                              :food_loss,
+                                              :delivery,
                                               # { :images_attributes=> [:subscription_id, :subscription_image]},
                                               # { :category_ids=> [] }
                                             )
       end
 
-      def judging_params
-        params.require(:subscription).permit(:name, :owner_id, :site, :admin_subscription_check)
-      end
-
       def recommend_params
         params.require(:subscription).permit(:recommend, :owner_id)
-      end
-
-      def favorite_params
-        params.require(:subscription).permit(:favorite, :user_id)
       end
 
       def map_params
@@ -232,4 +268,3 @@ class SubscriptionsController < ApplicationController
       end
 
 end
-

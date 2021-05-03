@@ -132,6 +132,7 @@ Rails.application.routes.draw do
         get 'edit_recommend' #おすすめ追加よう
         patch 'update_recommend' #おすすめ店舗に加えるたり外すよう
         get '/owner_subscriptions', to: "subscriptions#owner_subscriptions", as: :owner_subscriptions
+        post :takeout
       end
     end
     resources :private_stores do
@@ -146,6 +147,8 @@ Rails.application.routes.draw do
               #patch "plans_update", to: "private_store_user_plans#update", as: 'plans_update'
         #delete "plans_destroy", to: "private_store_user_plans#destroy", as: 'plans_destroy'
         get '/owner_private_stores', to: "private_stores#owner_private_stores", as: :owner_private_stores
+        post :takeout
+        post :strip
       end
     end
   end
@@ -183,9 +186,6 @@ Rails.application.routes.draw do
       # post "sms_auth", to: "sms#confirm"
     end
     get :search, on: :collection # ユーザーの名前であいまい検索 追加分
-    # get 'subscriptions/:id/edit_favorite', to: "subscriptions#edit_favorite", as: :edit_favorite#お気に入り店舗に加えるたり外すよう
-    # patch 'subscriptions/:id/update_recommend', to: "subscriptions#update_favorite", as: :update_favorite #お気に入り店舗に加えるたり外すよう
-    # get 'subscriptions/favorite', to: 'subscriptions#favorite', as: :favorite_subscriptions#おすすめショップ
     resources :tickets#サブスクチケット
     resources :reviews#利用者レビュー
       get "thanks", on: :member#会員完了通知仮面
@@ -209,7 +209,6 @@ Rails.application.routes.draw do
       get "update_confirm", to: "private_store_user_plans#update_confirm"
     end
   end
-  #get  "/private_store_user_plan/:id", to: "private_store_user_plans#new"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   #
 
@@ -222,6 +221,9 @@ Rails.application.routes.draw do
 
   get "subscriptions/:subscription/prices/:price/subscription_plan", to: "user_plans#subscription_plan", as: :subscription_plan#価格に応じた加盟店のプランへ
   get "private_stores/:private_store/prices/:price/private_store_plan", to: "private_store_user_plans#private_store_plan", as: :private_store_plan#価格に応じた個人店のプランへ
+
+  get "owners/:owners/private_store_ticket_buyer_list", to: "owners#private_store_ticket_buyer_list", as: :private_store_ticket_buyer_list#オーナーが見る個人店舗のチケット購買者一覧へ
+  get "admins/private_store_ticket_buyer_list", to: "admins#private_store_ticket_buyer_list", as: :admins_private_store_ticket_buyer_list#管理者が見る個人店舗のチケット購買者一覧へ
 
 
 
