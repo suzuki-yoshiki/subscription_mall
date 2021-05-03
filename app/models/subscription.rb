@@ -24,7 +24,7 @@ class Subscription < ApplicationRecord
   geocoded_by :address
   after_validation :geocode
 
-  enum price: { "1000" => 0, "3000"=> 1, "9000"=> 2, "11000"=> 3, "18000"=> 4, "25000"=> 5, "50000"=> 6, "100000"=> 7}, _prefix: true
+  enum price: { "3000"=> 0, "11000"=> 1, "18000"=> 2, "30000"=> 3, "50000"=> 4, "80000"=> 5, "100000"=> 6}, _prefix: true
   # attachment :image_subscription
   mount_uploader :image_subscription, SubscriptionUploader
   mount_uploader :sub_image, SubscriptionUploader

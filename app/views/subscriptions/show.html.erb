@@ -32,17 +32,11 @@
                 <h3 class="card-title font-weight-bold mt-2 mb-1">
                   <%= @subscription.name %>
                 </h3>
-                <%
-=begin%>
- <span class="badge badge-info">
-                  <% if @subscription.food_loss.present? %>
-                    <% if @subscription.food_loss === true %>
-                      <%= "フードロス実施店舗" %>
-                    <% end %>
+                <span class="badge badge-info">
+                  <% if @subscription.food_loss == true %>
+                    <%= "フードロス実施店舗" %>
                   <% end %>
                 </span> 
-<%
-=end%>
                 <p class="font-weight-normal mb-2">
                   <% if @subscription.address.present? %>
                     住所：<%= @subscription.address %>
@@ -252,18 +246,14 @@
             <strong>商品紹介: </strong><%= @subscription.detail %></h2>
           <h2 class="ml-xl-0 ml-4">
             <strong>店舗情報: </strong><%= @subscription.subscription_detail %></h2>
-          <%
-=begin%>
- <h2 class="ml-xl-0 ml-4">
+          <h2 class="ml-xl-0 ml-4">
             <strong>デリバリー: </strong>
-            <% if @subscription.delivery === true %>
+            <% if @subscription.delivery == true %>
               <%= "可" %>
-            <% elsif @subscription.delivery === false %>
+            <% elsif @subscription.delivery == false %>
               <%= "不可" %>
             <% end %>
           </h2> 
-<%
-=end%>
           <h2 class="ml-xl-0 ml-4">
             <strong>加入プラン: </strong><%= @subscription.price %></h2>
 
@@ -432,5 +422,5 @@
        </tbody>
      </table>
   </section>
-        <%= will_paginate(@reviews, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+<%= will_paginate(@reviews, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 </div>
