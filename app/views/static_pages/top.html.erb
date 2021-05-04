@@ -425,7 +425,7 @@
     <div class="search">
       <div class="input-group">
         <%= form_with(url: search_categories_path, method: :post, local: true) do |f| %>
-          <%= f.select :category_id, categories_list(@categories), {include_blank: "キーワードからお店を検索してみよう", class: "form-control"} %>
+          <%= f.select :category_id, categories_list(@categories_name), {include_blank: "キーワードからお店を検索してみよう", class: "form-control"} %>
           <%= f.submit "検索" %>
         <% end %>
       </div>
