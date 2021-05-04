@@ -62,7 +62,12 @@
 
     <hr class="border-solid-down" />
     <div class="search">
-      <%= render partial: "categories/select", locals: {categories: @category_all} %>
+      <div class="input-group">
+        <%= form_with(url: search_categories_path, method: :post, local: true) do |f| %>
+          <%= f.select :category_id, categories_list(@categories_name), {include_blank: "キーワードからお店を検索してみよう", class: "form-control"} %>
+          <%= f.submit "検索" %>
+        <% end %>
+      </div>
     </div>
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
@@ -429,7 +434,6 @@
           <%= f.submit "検索" %>
         <% end %>
       </div>
-      <%= render partial: "categories/select", locals: {categories: @category_all} %>
     </div>
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
@@ -893,7 +897,12 @@
     </div>
     <hr class="border-solid-down" />
     <div class="search">
-      <%= render partial: "categories/select", locals: {categories: @category_all} %>
+      <div class="input-group">
+        <%= form_with(url: search_categories_path, method: :post, local: true) do |f| %>
+          <%= f.select :category_id, categories_list(@categories_name), {include_blank: "キーワードからお店を検索してみよう", class: "form-control"} %>
+          <%= f.submit "検索" %>
+        <% end %>
+      </div>
     </div>
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
@@ -1294,7 +1303,12 @@
   <% else %> <%# ログインしてない %>
     <hr class="border-solid-down" />
     <div class="search">
-      <%= render partial: "categories/select", locals: {categories: @category_all} %>
+      <div class="input-group">
+        <%= form_with(url: search_categories_path, method: :post, local: true) do |f| %>
+          <%= f.select :category_id, categories_list(@categories_name), {include_blank: "キーワードからお店を検索してみよう", class: "form-control"} %>
+          <%= f.submit "検索" %>
+        <% end %>
+      </div>
     </div>
     <div class="category">
       <%= link_to categories_path, class: "btn-gradient-radius-orange" do%>
