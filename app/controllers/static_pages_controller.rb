@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
   before_action :map_object, :recommend_in_range, only: :top
+  before_action :payment_check, only: %i(top)
+
 
   def top
     @blogs = Blog.all
