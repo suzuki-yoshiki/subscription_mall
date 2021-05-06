@@ -4,6 +4,7 @@ class AdminsController < ApplicationController
   before_action :set_subscription, only: %i(subscription_owner_edit subscription_owner_update)
   before_action :set_private_store, only: %i(private_owner_edit private_owner_update)
   before_action :login_current_admin, only: %i(user_edit owner_edit)
+  before_action :admin_lock, only: %i(account)
 
   require 'rqrcode'
 

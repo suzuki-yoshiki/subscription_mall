@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
     @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).limit(5)
     @megurumereviews = Megurumereview.all
     @owners = Owner.all.limit(5)
-    @categories_name = Category.all#検索機能が選択ボックスだったら使う
+    @categories_all = Category.all#検索機能が選択ボックスだったら使う
     @categories = if params[:search]
       Category.search(params[:search]).order("RANDOM()").limit(6)
     else 
