@@ -5,15 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-Admin.create!(name: "中野優1",
-              email: "megurumee@gmail.com",
-              password: "password",
-              password_confirmation: "password")
 Admin.create!(name: "中野優",
-              email: ENV['SEND_MAILq'],
+              email: ENV['MAIL'],
               password: ENV['PASSWORD'],
               password_confirmation: ENV['PASSWORD'])
+              
+Admin.create!(name: "中野優2",
+              email: "megurumee2@gmail.com",
+              password: "password",
+              password_confirmation: "password")
               
   puts "Admin Created"
 
