@@ -3,10 +3,10 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   # include CategoriesHelper
   #本番環境ででErrorが発生したらrescue500,rescue404で処理を行う
-  if Rails.env.production?
-    rescue_from StandardError, with: :rescue500
-    rescue_from ActiveRecord::RecordNotFound, with: :rescue404
-  end
+  # if Rails.env.production?
+  #   rescue_from StandardError, with: :rescue500
+  #   rescue_from ActiveRecord::RecordNotFound, with: :rescue404
+  # end
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def configure_permitted_parameters
