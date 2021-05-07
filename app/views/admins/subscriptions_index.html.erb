@@ -11,8 +11,8 @@
         <tr>
         　<th>ID</th>
         　<th>店舗状況</th>
-          <th></th> 
-          <th>トライアル状態</th> 
+          <th></th>
+          <th>トライアル状態</th>
           <th>加盟店舗名</th>
           <th>金額</th>
           <th>オーナ―ID</th>
@@ -26,10 +26,10 @@
           <td><%= subscription.id %></td>
           <td>
             <span class="badge badge-info">
-              <% if subscription.situation == "加盟店承認済み" %>
-                <%= subscription.situation %>
-              <% elsif subscription.situation == "加盟店否認済み" %>
-                <%= subscription.situation %>
+              <% if subscription.owner.admin_check == "加盟店承認済み" %>
+                <%= subscription.owner.admin_check %>
+              <% elsif subscription.owner.admin_check == "加盟店否認済み" %>
+                <%= subscription.owner.admin_check %>
               <% elsif subscription.situation == "加盟店舗の申請中" %>
                 <%= subscription.situation %>
               <% end %>
@@ -37,7 +37,7 @@
           </td>
           <td><%= link_to "審査", subscription_owner_edit_admin_path(owner_id: subscription.owner_id, id: subscription.id), class: "btn-gradient-3d-simple" %></td>
           <td>
-            <% if subscription.admin_subscription_check == "承認" %>
+            <% if subscription.owner.admin_check == "加盟店承認済み" %>
               <% if subscription.trial == false %>
                 <%= "不参加" %>
               <% else %>
