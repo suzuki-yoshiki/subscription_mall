@@ -1,4 +1,6 @@
 class PrivateStoresController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  #protect_from_forgery with: :null_session
   before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :takeout]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend, :private_store_confirm, :private_store_judging, :takeout]
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
@@ -34,6 +36,8 @@ class PrivateStoresController < ApplicationController
     @sub_images = @private_store.images
     @reviews = @private_store.reviews.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
     @ticket = Ticket.includes(:user)
+    @owner = Owner.find(params[:owner_id])
+    @private_store = PrivateStore.find(params[:id])
   end
 
   def like_lunch
@@ -191,17 +195,38 @@ class PrivateStoresController < ApplicationController
   def strip
       # サブスク登録
       @private_store_plan = Stripe::Checkout::Session.create(
-        success_url: private_store_success_url,
-        cancel_url: private_store_cancel_url,
         payment_method_types: ['card'],
-        customer_email: current_user.email,
+        customer_email: 'sample-4@email.com',
         line_items: [{
-          price: params[:session],
-          quantity: 1},
-        ],
-        mode: 'subscription',
+          price_data: {
+            currency: 'jpy',
+            product: 'prod_JBsFLfsceVMW36',
+            unit_amount: 4000,
+            #recurring: {interval: "month"}
+          },
+          quantity: 1,
+        }],
+        mode: 'payment',
+        success_url: success_url,
+        cancel_url: cancel_url,
       )
   end
+
+  # stripe決済成功時
+  def success
+    current_user.update!(customer_id: current_user.session_id, session_id: "", price: current_user.session_price, session_price: "")
+    if current_user.select_trial && current_user.price == 1000
+      current_user.update!(trial_stripe_success: true)
+    else
+      current_user.update!(trial_stripe_success: false)
+    end
+  end
+
+  # stripe決済失敗時
+  def cancel
+    current_user.update!(session_id: "")
+  end
+
 
     private
       # Use callbacks to share common setup or constraints between actions.

@@ -3,10 +3,10 @@
 
 
 
-<form id="myForm" action="/owners/:owner_id/private_stores/:id/strip" method="POST">
-<input type="button" class="btn-gradient-3d-simple1 mb-2" id="customButton" value="個人店決済">
-    <input type="hidden" id="stripeToken" name="stripeToken"/>
-    <input type="hidden" id="stripeEmail" name="stripeEmail"/>
+<form id="myForm" action="/owners/1/private_stores/1/strip" method="POST">
+  <input type="button" class="btn-gradient-3d-simple1 mb-2" id="customButton" value="個人店決済">
+  <input type="hidden" id="stripeToken" name="stripeToken"/>
+  <input type="hidden" id="stripeEmail" name="stripeEmail"/>
 </form>
 
 <script>
@@ -19,6 +19,7 @@ $('#myModal').on('shown.bs.modal', function () {
 <script>
 var handler = StripeCheckout.configure({
   key: 'pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA',
+  locale: 'auto',
   token: function(token) {
     $("#stripeToken").val(token.id);
     $("#stripeEmail").val(token.email);
@@ -27,12 +28,12 @@ var handler = StripeCheckout.configure({
 });
 
 $('#customButton').on('click', function(e) {
-  var amount = $("#amount").val() * 100;
+  var amount = $("#amount").val() *100;
   // Open Checkout with further options
   handler.open({
     name: '巡グルメ決済',
     description: '<%= @private_store.name %>',
-    amount: '<%= @private_store.price %> '
+    amount: '<%= @private_store.price %>'
   });
   e.preventDefault();
 });

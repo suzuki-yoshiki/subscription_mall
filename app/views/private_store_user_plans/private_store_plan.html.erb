@@ -60,7 +60,7 @@
 
     checkoutButton.addEventListener('click', function() {
       stripe.redirectToCheckout({
-        sessionId: '<%= @plan_by_price.id %>'
+        sessionId: '<%= @plan_by_price.id %>',
       }).then(function (result) {
       });
     });

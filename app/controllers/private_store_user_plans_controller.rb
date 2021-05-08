@@ -236,7 +236,10 @@ class PrivateStoreUserPlansController < ApplicationController
             line_items: [{
               price_data: {
                 currency: 'jpy',
-                product: 'prod_JBsFLfsceVMW36',
+                product_data: {
+                  name: 'ap1',
+                },
+                #product: 'prod_JBsFLfsceVMW36',
                 unit_amount: params[:price].to_i,
                 recurring: {interval: "month"}
               },
