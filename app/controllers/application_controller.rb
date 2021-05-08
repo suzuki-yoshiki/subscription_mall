@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  
   include ApplicationHelper
   # include CategoriesHelper
   #本番環境ででErrorが発生したらrescue500,rescue404で処理を行う
@@ -155,6 +156,7 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
 
     private
 

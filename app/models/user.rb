@@ -24,6 +24,7 @@ class User < ApplicationRecord
          :registerable,
          :recoverable,
          :rememberable
+        #  :session_limitable,
         #  :validatable,
         #  :omniauthable,
         # omniauth_providers: [:facebook, :twitter, :google_oauth2, :line, :instagram]
