@@ -190,7 +190,7 @@ class PrivateStoresController < ApplicationController
 
   def strip
       # サブスク登録
-      @private_store_plan = Stripe::Checkout::Session.create(
+      Stripe::Checkout::Session.create(
         success_url: private_store_success_url,
         cancel_url: private_store_cancel_url,
         payment_method_types: ['card'],

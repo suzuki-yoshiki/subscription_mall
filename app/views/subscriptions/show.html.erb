@@ -33,7 +33,7 @@
                   <%= @subscription.name %>
                 </h3>
                 <span class="badge badge-info">
-                  <% if @subscription.food_loss === true %>
+                  <% if @subscription.food_loss == true %>
                     <%= "フードロス実施店舗" %>
                   <% end %>
                 </span>
@@ -250,9 +250,9 @@
             <strong>店舗情報: </strong><%= @subscription.subscription_detail %></h2>
           <h2 class="ml-xl-0 ml-4">
             <strong>デリバリー: </strong>
-            <% if @subscription.delivery === true %>
+            <% if @subscription.delivery == true %>
               <%= "可" %>
-            <% elsif @subscription.delivery === false %>
+            <% elsif @subscription.delivery == false %>
               <%= "不可" %>
             <% end %>
           </h2>
@@ -424,5 +424,5 @@
        </tbody>
      </table>
   </section>
-        <%= will_paginate(@reviews, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+<%= will_paginate(@reviews, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 </div>
