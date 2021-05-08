@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def like_lunch
-    @subscriptions = @category.subscriptions.where(admin_subscription_check: "承認")
+    @subscriptions = @category.subscriptions.where(admin_check: "加盟店承認済み")
     @private_stores = @category.private_stores.where(admin_private_check: "承認")
     @subscriptions = @category.subscriptions
     @private_stores = @category.private_stores

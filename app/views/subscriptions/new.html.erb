@@ -4,7 +4,7 @@
 
 <%= form_with(model: @subscription, url: subscription_confirm_path(@subscription, owner_id: current_owner.id), method: :post, local: true) do |form| %>
   <%= render 'shared/error_messages' , object: @subscription %>
-  
+
   <div class="field">
     <%= form.label :お店の名前 %> <span class="must">必須</span><br/>
     <%= form.text_field :name, :required => true, id: :subscription_name, class: 'form-control' %>

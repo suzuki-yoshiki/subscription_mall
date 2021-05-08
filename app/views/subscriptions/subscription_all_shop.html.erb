@@ -6,6 +6,7 @@
 
 
 <% @subscriptions.each do |subscription| %>
+ <% if subscription.owner.admin_check == "加盟店承認済み"%>
   <div class="container mt-5">
     <section class="dark-grey-text">
       <div class="row align-items-center">
@@ -32,7 +33,8 @@
       </div>
       <hr class="my-3">
     </section>
-  </div>
+   </div>
+  <% end %>
 <% end%>
 
 <br>
