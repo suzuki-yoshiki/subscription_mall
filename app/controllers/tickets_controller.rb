@@ -59,18 +59,18 @@ class TicketsController < ApplicationController
         ticket_trial = "-"
       end
       TicketLog.create(
-        use_ticket_day_log: @ticket.use_ticket_day, 
+        use_ticket_day_log: @ticket.use_ticket_day,
         owner_name: @ticket.owner_name,
-        owner_email: @ticket.owner_email, 
-        owner_phone_number: @ticket.owner_phone_number, 
+        owner_email: @ticket.owner_email,
+        owner_phone_number: @ticket.owner_phone_number,
         owner_store_information: @ticket.owner_store_information,
-        subscription_name: @ticket.subscription_name, 
-        category_id: @ticket.category_id, 
-        private_store_name: @ticket.private_store_name, 
+        subscription_name: @ticket.subscription_name,
+        category_id: @ticket.category_id,
+        private_store_name: @ticket.private_store_name,
         subscription_fee: @ticket.subscription_fee,
         issue_ticket_day: @ticket.issue_ticket_day,
-        user_id: @ticket.user_id, 
-        price: @ticket.price, 
+        user_id: @ticket.user_id,
+        price: @ticket.price,
         trial: ticket_trial,
       )
       TicketMailer.ticket_email(@ticket).deliver_now
