@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210426054039) do
+
+ActiveRecord::Schema.define(version: 20210504074103) do
+
 
   create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "email", default: "", null: false
@@ -25,6 +27,7 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.string "phone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "unique_session_id", limit: 20
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -154,6 +157,8 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "info"
+    t.string "unique_session_id", limit: 20
+    t.string "admin_check"
     t.index ["email"], name: "index_owners_on_email", unique: true
     t.index ["reset_password_token"], name: "index_owners_on_reset_password_token", unique: true
   end
@@ -186,8 +191,6 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.text "private_store_detail"
     t.string "email"
     t.string "phone_number"
-    t.string "subject"
-    t.string "message"
     t.string "script"
     t.string "sub_image"
     t.string "sub_image2"
@@ -217,10 +220,6 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.string "product_id"
     t.boolean "select_trial", default: false
     t.boolean "trial"
-    t.boolean "takeout", default: false
-    t.boolean "food_loss", default: true
-    t.boolean "delivery", default: false
-    t.integer "preparation_time", default: 0
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -277,8 +276,6 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.text "subscription_detail"
     t.string "email"
     t.string "phone_number"
-    t.string "subject"
-    t.string "message"
     t.string "script"
     t.string "sub_image"
     t.string "sub_image2"
@@ -306,10 +303,6 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.float "latitude", limit: 24
     t.float "longitude", limit: 24
     t.boolean "trial"
-    t.boolean "takeout", default: false
-    t.boolean "food_loss", default: true
-    t.boolean "delivery", default: false
-    t.integer "preparation_time", default: 0
     t.bigint "owner_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -339,8 +332,6 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.date "use_ticket_day_log"
     t.integer "price"
     t.string "trial"
-    t.integer "category_id"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "owner_name"
@@ -351,7 +342,7 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.string "private_store_name"
     t.string "subscription_fee"
     t.date "issue_ticket_day"
-    t.index ["user_id"], name: "index_ticket_logs_on_user_id"
+    t.bigint "user_id"
   end
 
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -363,11 +354,9 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.string "subscription_name"
     t.string "private_store_name"
     t.string "subscription_fee"
-    t.integer "category_id"
     t.date "use_ticket_day"
     t.date "issue_ticket_day"
     t.boolean "trial"
-    t.boolean "food_loss"
     t.integer "price"
     t.string "trial_check"
     t.string "trial_last_check"
@@ -412,6 +401,7 @@ ActiveRecord::Schema.define(version: 20210426054039) do
     t.datetime "deleted_at"
     t.string "info"
     t.boolean "used_trial", default: false, null: false
+    t.string "unique_session_id", limit: 20
     t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -435,6 +425,5 @@ ActiveRecord::Schema.define(version: 20210426054039) do
   add_foreign_key "subscriptions", "users"
   add_foreign_key "suports", "owners"
   add_foreign_key "suports", "users"
-  add_foreign_key "ticket_logs", "users"
   add_foreign_key "tickets", "users"
 end

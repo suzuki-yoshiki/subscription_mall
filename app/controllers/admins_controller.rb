@@ -4,6 +4,7 @@ class AdminsController < ApplicationController
   before_action :set_subscription, only: %i(subscription_owner_edit subscription_owner_update)
   before_action :set_private_store, only: %i(private_owner_edit private_owner_update)
   before_action :login_current_admin, only: %i(user_edit owner_edit)
+  before_action :admin_lock, only: %i(account)
 
   require 'rqrcode'
 
@@ -65,20 +66,23 @@ class AdminsController < ApplicationController
   end
 
   def subscription_owner_update
+    @owner = Owner.find(params[:owner_id])
     if params[:subscription][:admin_subscription_check] == "承認" || params[:subscription][:admin_subscription_check] == "否認" || params[:subscription][:admin_subscription_check] == ""
       if params[:subscription][:admin_subscription_check] == "承認"
         params[:subscription][:admin_last_check] = "加盟承認審査済み"
         params[:subscription][:situation] = "加盟店承認済み"
+        @owner.update!(admin_check: "加盟店承認済み")
       elsif params[:subscription][:admin_subscription_check] == "否認"
         params[:subscription][:admin_last_check] = "否認審査済み"
         params[:subscription][:situation] = "加盟店否認済み"
+        @owner.update!(admin_check: "加盟店否認済み")
       elsif params[:subscription][:admin_subscription_check] == ""
         flash[:notice] = "審査状況の選択してください"
         render :subscription_owner_edit and return
       end
     end
     @subscription.update(subscription_owner_params)
-    # SubscriptionMailer.with(subscription: @subscription, new: "承認").judging_email.deliver_now
+     # SubscriptionMailer.with(subscription: @subscription, new: "承認").judging_email.deliver_now
     flash[:notice] = "#{@owner.name}様の加盟店申し込みを#{@subscription.admin_subscription_check}しました"
     redirect_to admins_subscriptions_index_url and return
   end
@@ -95,7 +99,7 @@ class AdminsController < ApplicationController
       elsif params[:private_store][:admin_private_check] == "否認"
         params[:private_store][:admin_last_check] = "否認審査済み"
         params[:private_store][:situation] = "個人店否認済み"
-      elsif params[:private_store][:admin_private_check] == "" 
+      elsif params[:private_store][:admin_private_check] == ""
         flash[:notice] = "審査状況の選択してください"
         render :private_owner_edit and return
       end

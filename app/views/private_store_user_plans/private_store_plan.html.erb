@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-lg-4 col-md-6 mb-4 mx-auto">
         <div class="card">
-	  <div class="card-body subscription-bg">
+          <div class="card-body subscription-bg">
             <% if @private_store.present? && @private_store.trial == true && current_user.select_trial %>
               <h5 class="mb-4">トライアルプラン</h5>
             <% else %>
@@ -28,29 +28,12 @@
             <% else %>
               <button type="button" id="user-checkout-button" class="btn btn-outline-success btn-rounded waves-effect">サブスクする</button>
             <% end %>
-	  </div>
-	</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </div>
-
-<%
-=begin%>
- <script src="https://js.stripe.com/v3/"></script>
-<script>
-  var stripe = Stripe("<%= ENV['STRIPE_PUBLISHABLE_KEY']%>");
-  var checkoutButton = document.getElementById('user-checkout-button');
-
-  checkoutButton.addEventListener('click', function() {
-    stripe.redirectToCheckout({
-      sessionId: '<%= @plan_by_price.id %>'
-    }).then(function (result) {
-    });
-  });
-</script>
-<%
-=end%>
 
 <% if Rails.env.development? || Rails.env.test? %>
   <script src="https://js.stripe.com/v3/"></script>

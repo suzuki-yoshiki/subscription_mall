@@ -16,7 +16,7 @@
 =begin%>
  <div class="col-sm-1">
 	  ordinal
-        </div> 
+        </div>
 <%
 =end%>
         <div class="col-sm-2">
@@ -43,16 +43,16 @@
         </div>
         <div class="col-sm-2">
           <span class="badge badge-info">
-            <% if subscription.admin_subscription_check == "承認" %>
+            <% if subscription.owner.admin_check == "加盟店承認済み" %>
               <% if subscription.trial == true %>
                 <span class="badge badge-warning">トライアル参加済み</span>
               <% end %>
               <span class="badge badge-info">
-                <%= subscription.admin_last_check %>
+                <%= subscription.owner.admin_check %>
               </span>
-            <% elsif subscription.admin_subscription_check == "否認" %>
+            <% elsif subscription.owner.admin_check == "加盟店否認済み" %>
               <span class="badge badge-info">
-                <%= subscription.admin_last_check %>
+                <%= subscription.owner.admin_check %>
               </span>
             <% elsif subscription.situation == "加盟店舗の申請中" %>
               <% if subscription.trial == true %>
@@ -65,7 +65,7 @@
           </span>
         </div>
         <div class="col-sm-2">
-        <% if subscription.admin_subscription_check == "承認" %>
+        <% if subscription.owner.admin_check == "加盟店承認済み" %>
           <% if subscription.trial == false %>
             <span class="badge badge-warning"><%= "不参加" %></span>
           <% else %>

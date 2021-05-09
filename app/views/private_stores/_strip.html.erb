@@ -1,0 +1,45 @@
+<script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+
+
+<form id="myForm" action="/owners/:owner_id/private_stores/:id/strip" method="POST">
+<input type="button" class="btn-gradient-3d-simple1 mb-2" id="customButton" value="個人店決済">
+    <input type="hidden" id="stripeToken" name="stripeToken"/>
+    <input type="hidden" id="stripeEmail" name="stripeEmail"/>
+</form>
+
+<script>
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+
+
+<script>
+var handler = StripeCheckout.configure({
+  key: 'pk_test_51IHqB5JVVDWHDt8YwAjkc1lRochnXNMUyVjYCYwQzFTkhDsqZpAYfEQ24xqEAR7WEbl0CyRshzgWRlMa38M9MK5m00qXldS6VA',
+  token: function(token) {
+    $("#stripeToken").val(token.id);
+    $("#stripeEmail").val(token.email);
+    $("#myForm").submit();
+  }
+});
+
+$('#customButton').on('click', function(e) {
+  var amount = $("#amount").val() * 100;
+  // Open Checkout with further options
+  handler.open({
+    name: '<%= @private_store.name %>',
+    description: '<%= "￥#{@private_store.price}/月" %>',
+    amount: amount
+  });
+  e.preventDefault();
+});
+
+// Close Checkout on page navigation
+$(window).on('popstate', function() {
+  handler.close();
+});
+</script>
+

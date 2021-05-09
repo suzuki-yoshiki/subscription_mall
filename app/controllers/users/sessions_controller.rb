@@ -2,10 +2,12 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  before_action :check_login, only: [:new]
+
 
   # GET /resource/sign_in
   # def new
-  #   super
+    # super
   # end
 
   # POST /resource/sign_in
@@ -20,7 +22,14 @@ class Users::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+ protected 
+
+  def check_login
+    if current_user || current_owner || current_admin
+      flash[:danger] = "既にログインしています。別ユーザーとしてログインする場合は、一度ログアウトして下さい。"
+      redirect_to root_url, notice: '既にログインしています。別ユーザーでログインしたい場合は、一度ログアウトして下さい。'
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

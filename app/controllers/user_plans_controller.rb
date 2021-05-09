@@ -346,7 +346,7 @@ class UserPlansController < ApplicationController
             line_items: [{
               price_data: {
                 currency: 'jpy',
-                product: 'prod_Itdb3ZOVEaX3iU',
+                product: 'prod_J9Ki7bbxmGqQHe',
                 unit_amount: params[:price].to_i,
                 recurring: {interval: "month"}
               },
