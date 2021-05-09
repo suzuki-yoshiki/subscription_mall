@@ -1,4 +1,6 @@
 class PrivateStoresController < ApplicationController
+  #skip_before_action :verify_authenticity_token
+  #protect_from_forgery with: :null_session
   before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :takeout]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend, :private_store_confirm, :private_store_judging, :takeout]
   # before_action :set_user, only: [:favorite, :edit_favorite, :update_favorite]
@@ -186,21 +188,6 @@ class PrivateStoresController < ApplicationController
     else
       redirect_to like_lunch_category_url(@private_store.category_id)
     end
-  end
-
-  def strip
-      # サブスク登録
-      Stripe::Checkout::Session.create(
-        success_url: private_store_success_url,
-        cancel_url: private_store_cancel_url,
-        payment_method_types: ['card'],
-        customer_email: current_user.email,
-        line_items: [{
-          price: params[:session],
-          quantity: 1},
-        ],
-        mode: 'subscription',
-      )
   end
 
     private

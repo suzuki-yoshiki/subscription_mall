@@ -218,7 +218,10 @@ class PrivateStoreUserPlansController < ApplicationController
             line_items: [{
               price_data: {
                 currency: 'jpy',
-                product: 'prod_J3NbUHqtOpmfgT',
+                product_data: {
+                  name: 'トライアルプラン',
+                },
+                #product: 'prod_J3NbUHqtOpmfgT',
                 unit_amount: 1000,
                 recurring: {interval: "month"}
               },
@@ -229,14 +232,38 @@ class PrivateStoreUserPlansController < ApplicationController
             cancel_url: cancel_url,
           )
           current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
-        else
+        elsif @private_store.present?
           @plan_by_price = Stripe::Checkout::Session.create(
             payment_method_types: ['card'],
             customer_email: current_user.email,
             line_items: [{
               price_data: {
                 currency: 'jpy',
-                product: 'prod_JBsFLfsceVMW36',
+                product_data: {
+                  name: @private_store.name,
+                },
+                #product: 'prod_JBsFLfsceVMW36',
+                unit_amount: params[:price].to_i,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
+        elsif @private_store.blank?
+          @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product_data: {
+                  name: '個人店舗',
+                },
+                #product: 'prod_JBsFLfsceVMW36',
                 unit_amount: params[:price].to_i,
                 recurring: {interval: "month"}
               },
@@ -256,7 +283,10 @@ class PrivateStoreUserPlansController < ApplicationController
             line_items: [{
               price_data: {
                 currency: 'jpy',
-                product: 'prod_J3NbUHqtOpmfgT',
+                product_data: {
+                  name: 'トライアルプラン',
+                },
+                #product: 'prod_J3NbUHqtOpmfgT',
                 unit_amount: 1000,
                 recurring: {interval: "month"}
               },
@@ -267,14 +297,38 @@ class PrivateStoreUserPlansController < ApplicationController
             cancel_url: cancel_url,
           )
           current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
-        else
+        elsif @private_store.present?
           @plan_by_price = Stripe::Checkout::Session.create(
             payment_method_types: ['card'],
             customer_email: current_user.email,
             line_items: [{
               price_data: {
                 currency: 'jpy',
-                product: 'prod_JBsFLfsceVMW36',
+                product_data: {
+                  name: @private_store.name,
+                },
+                #product: 'prod_JBsFLfsceVMW36',
+                unit_amount: params[:price].to_i,
+                recurring: {interval: "month"}
+              },
+              quantity: 1,
+            }],
+            mode: 'subscription',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          )
+          current_user.update!(session_id: @plan_by_price.id, session_price: @plan_by_price.amount_subtotal, used_trial: true)
+        elsif @private_store.blank?
+          @plan_by_price = Stripe::Checkout::Session.create(
+            payment_method_types: ['card'],
+            customer_email: current_user.email,
+            line_items: [{
+              price_data: {
+                currency: 'jpy',
+                product_data: {
+                  name: '個人店舗',
+                },
+                #product: 'prod_JBsFLfsceVMW36',
                 unit_amount: params[:price].to_i,
                 recurring: {interval: "month"}
               },
