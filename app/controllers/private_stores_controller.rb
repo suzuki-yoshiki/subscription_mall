@@ -1,5 +1,5 @@
 class PrivateStoresController < ApplicationController
-  skip_before_action :verify_authenticity_token
+  #skip_before_action :verify_authenticity_token
   #protect_from_forgery with: :null_session
   before_action :set_private_store, only: [:update, :show, :edit, :update, :destroy, :edit_recommend, :update_recommend, :takeout]
   before_action :set_owner, only: [:index, :new, :create, :show, :edit, :update, :destroy, :owner_private_stores, :edit_recommend, :update_recommend, :private_store_confirm, :private_store_judging, :takeout]
@@ -36,8 +36,6 @@ class PrivateStoresController < ApplicationController
     @sub_images = @private_store.images
     @reviews = @private_store.reviews.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
     @ticket = Ticket.includes(:user)
-    @owner = Owner.find(params[:owner_id])
-    @private_store = PrivateStore.find(params[:id])
   end
 
   def like_lunch
