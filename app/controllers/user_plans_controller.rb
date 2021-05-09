@@ -131,7 +131,10 @@ class UserPlansController < ApplicationController
         line_items: [{
           price_data: {
             currency: 'jpy',
-            product: 'prod_J3NbUHqtOpmfgT',
+            product_data: {
+              name: 'トライアルプラン',
+            },
+            #product: 'prod_J3NbUHqtOpmfgT',
             unit_amount: 1000,
             recurring: {interval: "month"}
           },
@@ -150,7 +153,10 @@ class UserPlansController < ApplicationController
         line_items: [{
           price_data: {
             currency: 'jpy',
-            product: 'prod_J3NbUHqtOpmfgT',
+            product_data: {
+              name: 'トライアルプラン',
+            },
+            #product: 'prod_J3NbUHqtOpmfgT',
             unit_amount: 1000,
             recurring: {interval: "month"}
           },
