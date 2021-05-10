@@ -26,10 +26,10 @@
           <td><%= private_store.id %></td>
           <td>
             <span class="badge badge-info">
-              <% if private_store.situation == "個人店承認済み" %>
-                <%= private_store.situation %>
-              <% elsif private_store.situation == "個人店否認済み" %>
-                <%= private_store.situation %>
+              <% if private_store.owner.admin_check_private == "個人店承認済み" %>
+                <%= private_store.owner.admin_check_private %>
+              <% elsif private_store.owner.admin_check_private == "個人店否認済み" %>
+                <%= private_store.owner.admin_check_private %>
               <% elsif private_store.situation == "個人店申請中" %>
                 <%= private_store.situation %>
               <% end %>
