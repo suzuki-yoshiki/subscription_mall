@@ -12,7 +12,7 @@
           <th>ID</th>
           <th>店舗状況</th>
           <th></th>
-          <th>トライアル状態</th> 
+          <th>トライアル状態</th>
           <th>個人店舗名</th>
           <th>金額</th>
           <th>オーナ―ID</th>
@@ -37,7 +37,7 @@
           </td>
           <td><%= link_to "審査", private_owner_edit_admin_path(owner_id: private_store.owner_id, id: private_store.id), class: "btn-gradient-3d-simple" %></td>
           <td>
-            <% if private_store.admin_private_check == "承認" %>
+            <% if private_store.owner.admin_check_private == "個人店承認済み" %>
               <% if private_store.trial == false %>
                 <%= "不参加" %>
               <% elsif private_store.trial == true %>

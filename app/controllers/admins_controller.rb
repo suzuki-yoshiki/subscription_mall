@@ -92,13 +92,16 @@ class AdminsController < ApplicationController
   end
 
   def private_owner_update
+    @owner = Owner.find(params[:owner_id])
     if params[:private_store][:admin_private_check] == "承認" || params[:private_store][:admin_private_check] == "否認" || params[:private_store][:admin_private_check] == ""
       if params[:private_store][:admin_private_check] == "承認"
         params[:private_store][:admin_last_check] = "個人承認審査済み"
         params[:private_store][:situation] = "個人店承認済み"
+        @owner.update!(admin_check_private: "個人店承認済み")
       elsif params[:private_store][:admin_private_check] == "否認"
         params[:private_store][:admin_last_check] = "否認審査済み"
         params[:private_store][:situation] = "個人店否認済み"
+        @owner.update!(admin_check_private: "個人店否認済み")
       elsif params[:private_store][:admin_private_check] == ""
         flash[:notice] = "審査状況の選択してください"
         render :private_owner_edit and return

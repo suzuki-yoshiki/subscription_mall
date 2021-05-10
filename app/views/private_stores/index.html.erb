@@ -35,7 +35,7 @@
           </span>
         </div>
         <div class="col-sm-2">
-        <% if private_store.admin_private_check == "承認" %>
+        <% if private_store.owner.admin_check_private == "個人店承認済み" %>
           <% if private_store.trial == false %>
             <%= "不参加" %>
           <% else %>
