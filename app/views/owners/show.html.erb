@@ -6,7 +6,7 @@
     <div class="col-md-6 ml-auto mr-auto">
       <table class="table">
         <%# ここから追加分 %>
-        <% if @subscriptions == []%> 
+        <% if @subscriptions == []%>
         <% end %>
         <%# ここまで追加分 %>
 
@@ -41,16 +41,16 @@
                 <div class="card">
                   <div class="card-body">
                   <span class="badge badge-success">加盟店</span>
-                  <% if subscription.admin_subscription_check == "承認" %>
+                  <% if subscription.owner.admin_check == "加盟店承認済み" %>
                     <% if subscription.trial == true %>
                       <span class="badge badge-warning">トライアル参加済み</span>
                     <% end %>
                     <span class="badge badge-info">
-                      <%= subscription.admin_last_check %>
+                      <%= subscription.owner.admin_check %>
                     </span>
-                  <% elsif subscription.admin_subscription_check == "否認" %>
+                  <% elsif subscription.owner.admin_check == "加盟店否認済み" %>
                     <span class="badge badge-info">
-                      <%= subscription.admin_last_check %>
+                      <%= subscription.owner.admin_check %>
                     </span>
                   <% elsif subscription.situation == "加盟店舗の申請中" %>
                     <% if subscription.trial == true %>
@@ -66,9 +66,9 @@
                     </h5>
                     <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(subscription.price) %></p>
                     <p class="card-title">
-                      <% if subscription.admin_last_check == "加盟承認審査済み" %>
+                      <% if subscription.owner.admin_check == "加盟店承認済み" %>
                         <%= link_to "カスタマイズ", edit_owner_subscription_path(subscription, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %>
-                      <% elsif subscription.admin_last_check == "否認審査済み" %>
+                      <% elsif subscription.owner.admin_check == "加盟店否認済み" %>
                       <div class="col-sm-1 btn--del">
                         <%= link_to "削除", owner_subscription_path(subscription, owner_id: @owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
                       </div>
@@ -85,16 +85,16 @@
                 <div class="card">
                   <div class="card-body">
                   <span class="badge badge-primary">個人店舗</span>
-                  <% if private_store.admin_private_check == "承認" %>
+                  <% if private_store.owner.admin_check_private == "個人店承認済み" %>
                     <% if private_store.trial == true %>
                       <span class="badge badge-warning">トライアル参加済み</span>
                     <% end %>
                     <span class="badge badge-info">
-                      <%= private_store.admin_last_check %>
+                      <%= private_store.owner.admin_check_private %>
                     </span>
-                  <% elsif private_store.admin_private_check == "否認" %>
+                  <% elsif private_store.owner.admin_check_private == "個人店否認済み" %>
                     <span class="badge badge-info">
-                      <%= private_store.admin_last_check %>
+                      <%= private_store.owner.admin_check_private %>
                     </span>
                   <% elsif private_store.situation == "個人店申請中" %>
                     <% if private_store.trial == true %>
@@ -108,9 +108,9 @@
                     <h5 class="card-title"><%= link_to "サブスクのタイトル：#{private_store.title}", owner_private_store_path(private_store, owner_id: @owner.id) %></h5>
                     <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(private_store.price) %></p>
                     <p class="card-title">
-                      <% if private_store.admin_last_check == "個人承認審査済み" %>
+                      <% if private_store.owner.admin_check_private == "個人店承認済み" %>
                         <%= link_to "カスタマイズ", edit_owner_private_store_path(private_store, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %>
-                      <% elsif private_store.admin_last_check == "否認審査済み" %>
+                      <% elsif private_store.owner.admin_check_private == "個人店否認済み" %>
                         <div class="col-sm-1 btn--del">
                           <%= link_to "削除", owner_private_store_path(private_store, owner_id: @owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
                         </div>
@@ -129,16 +129,16 @@
                 <div class="card">
                   <div class="card-body">
                   <span class="badge badge-success">加盟店</span>
-                  <% if subscription.admin_subscription_check == "承認" %>
+                  <% if subscription.owner.admin_check == "加盟店承認済み" %>
                     <% if subscription.trial == true %>
                       <span class="badge badge-warning">トライアル参加済み</span>
                     <% end %>
                     <span class="badge badge-info">
-                      <%= subscription.admin_last_check %>
+                      <%= subscription.owner.admin_check %>
                     </span>
-                  <% elsif subscription.admin_subscription_check == "否認" %>
+                  <% elsif subscription.owner.admin_check == "加盟店否認済み" %>
                     <span class="badge badge-info">
-                      <%= subscription.admin_last_check %>
+                      <%= subscription.owner.admin_check %>
                     </span>
                   <% elsif subscription.situation == "加盟店舗の申請中" %>
                     <% if subscription.trial == true %>
@@ -154,9 +154,9 @@
                     </h5>
                     <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(subscription.price) %></p>
                     <p class="card-title">
-                      <% if subscription.admin_last_check == "加盟承認審査済み" %>
+                      <% if subscription.owner.admin_check == "加盟店承認済み" %>
                         <%= link_to "カスタマイズ", edit_owner_subscription_path(subscription, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %>
-                      <% elsif subscription.admin_last_check == "否認審査済み" %>
+                      <% elsif subscription.owner.admin_check == "加盟店否認済み" %>
                       <div class="col-sm-1 btn--del">
                         <%= link_to "削除", owner_subscription_path(subscription, owner_id: @owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
                       </div>
@@ -171,16 +171,16 @@
                 <div class="card">
                   <div class="card-body">
                   <span class="badge badge-primary">個人店舗</span>
-                  <% if private_store.admin_private_check == "承認" %>
+                  <% if private_store.owner.admin_check_private == "個人店承認済み" %>
                     <% if private_store.trial == true %>
                       <span class="badge badge-warning">トライアル参加済み</span>
                     <% end %>
                     <span class="badge badge-info">
-                      <%= private_store.admin_last_check %>
+                      <%= private_store.owner.admin_check_private %>
                     </span>
-                  <% elsif private_store.admin_private_check == "否認" %>
+                  <% elsif private_store.owner.admin_check_private == "個人店否認済み" %>
                     <span class="badge badge-info">
-                      <%= private_store.admin_last_check %>
+                      <%= private_store.owner.admin_check_private %>
                     </span>
                   <% elsif private_store.situation == "個人店申請中" %>
                     <% if private_store.trial == true %>
@@ -194,9 +194,9 @@
                     <h5 class="card-title"><%= link_to "サブスクのタイトル：#{private_store.title}", owner_private_store_path(private_store, owner_id: @owner.id) %></h5>
                     <p class="card-text">サブスク加入プラン：　¥<%= check_not_set(private_store.price) %></p>
                     <p class="card-title">
-                      <% if private_store.admin_last_check == "個人承認審査済み" %>
+                      <% if private_store.owner.admin_check_private == "個人店承認済み" %>
                         <%= link_to "カスタマイズ", edit_owner_private_store_path(private_store, owner_id: @owner.id), class: "btn btn--blue btn-md btn--shadow" %>
-                      <% elsif private_store.admin_last_check == "否認審査済み" %>
+                      <% elsif private_store.owner.admin_check_private == "個人店否認済み" %>
                         <div class="col-sm-1 btn--del">
                           <%= link_to "削除", owner_private_store_path(private_store, owner_id: @owner.id), method: :delete, class: "btn btn-danger", data: { confirm: "お店を削除してよろしいですか？" } %>
                         </div>

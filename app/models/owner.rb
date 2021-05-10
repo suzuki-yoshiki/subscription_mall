@@ -17,6 +17,7 @@ class Owner < ApplicationRecord
          :registerable,
          :recoverable,
          :rememberable
+        #  :session_limitable
 	# :confirmable
         #  :validatable
 

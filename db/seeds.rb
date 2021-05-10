@@ -9,12 +9,12 @@ Admin.create!(name: "中野優",
               email: ENV['MAIL'],
               password: ENV['PASSWORD'],
               password_confirmation: ENV['PASSWORD'])
-              
+#              
 Admin.create!(name: "中野優2",
               email: "megurumee2@gmail.com",
               password: "password",
               password_confirmation: "password")
-              
+#              
   puts "Admin Created"
 
 30.times do |n|
