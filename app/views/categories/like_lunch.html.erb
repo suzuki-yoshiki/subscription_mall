@@ -63,6 +63,7 @@
     </section>
   </div>
 <% end%>
+<%= will_paginate(@subscriptions, class: "pagination justify-content-center mt-6 mb-7", renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 
 <br>
 <%= link_to 'カテゴリー一覧へ', categories_path %>

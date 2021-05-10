@@ -10,18 +10,16 @@ class CategoriesController < ApplicationController
   end
 
   def like_lunch
-    @subscriptions = @category.subscriptions.where(admin_check: "加盟店承認済み")
-    @private_stores = @category.private_stores.where(admin_check_private: "個人店承認済み")
-    @subscriptions = @category.subscriptions
-    @private_stores = @category.private_stores
+    @subscriptions = @category.subscriptions.where(admin_last_check: "加盟承認審査済み").paginate(page: params[:page], per_page: 5)
+    @private_stores = @category.private_stores.where(admin_last_check: "個人承認審査済み").paginate(page: params[:page], per_page: 5)
     if current_user.present?
-      current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
+      current_user.update!(select_trial: false) if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
     end
   end
 
   def trial_shop
-    @subscriptions = Subscription.where(trial: true)
-    @private_stores = PrivateStore.where(trial: true)
+    @subscriptions = Subscription.where(trial: true).where(admin_last_check: "加盟承認審査済み").paginate(page: params[:page], per_page: 5)
+    @private_stores = PrivateStore.where(trial: true).where(admin_last_check: "個人承認審査済み").paginate(page: params[:page], per_page: 5)
     if current_user.present?
       current_user.update!(select_trial: true) if current_user.price.blank?
     end
@@ -70,13 +68,13 @@ class CategoriesController < ApplicationController
 
 
   def shop_list
-    @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
-    @private_stores = PrivateStore.all.order(created_at: :asc).paginate(page: params[:page], per_page: 10)
+    @subscriptions = Subscription.where(admin_last_check: "加盟承認審査済み").order(created_at: :asc).paginate(page: params[:page], per_page: 5)
+    @private_stores = PrivateStore.where(admin_last_check: "個人承認審査済み").order(created_at: :asc).paginate(page: params[:page], per_page: 5)
   end
 
   def recommend
-    @subscriptions = Subscription.where(recommend: true).order(created_at: :asc).paginate(page: params[:page], per_page: 10)
-    @private_stores = PrivateStore.where(recommend: true).where(admin_private_check: "個人店舗データ反映済み").order(created_at: :asc).paginate(page: params[:page], per_page: 10)
+    @subscriptions = Subscription.where(recommend: true).where(admin_last_check: "加盟承認審査済み").order(created_at: :asc).paginate(page: params[:page], per_page: 5)
+    @private_stores = PrivateStore.where(recommend: true).where(admin_last_check: "個人承認審査済み").order(created_at: :asc).paginate(page: params[:page], per_page: 5)
   end
 
   private

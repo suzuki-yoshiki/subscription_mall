@@ -19,7 +19,7 @@ class PrivateStoresController < ApplicationController
   end
 
   def private_all_shop
-    @private_stores = PrivateStore.includes(:owner)
+    @private_stores = PrivateStore.where(admin_last_check: "個人承認審査済み").includes(:owner)
     @private_stores_count = PrivateStore.where(admin_last_check: "個人承認審査済み").count
     # @private_stores = PrivateStore.all
     if current_user.present?

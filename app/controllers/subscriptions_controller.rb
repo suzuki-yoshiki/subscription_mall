@@ -19,10 +19,8 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_all_shop
-    # @subscriptions = Subscription.where(admin_last_check: "加盟承認審査済み")
-    @subscriptions = Subscription.includes(:owner)
+    @subscriptions = Subscription.where(admin_last_check: "加盟承認審査済み").paginate(page: params[:page], per_page: 5)
     @subscriptions_count = Subscription.where(admin_last_check: "加盟承認審査済み").count
-    # @subscriptions = Subscription.all
     if current_user.present?
       current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
     end
