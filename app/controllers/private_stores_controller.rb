@@ -19,9 +19,9 @@ class PrivateStoresController < ApplicationController
   end
 
   def private_all_shop
-    @private_stores = PrivateStore.where(admin_last_check: "個人承認審査済み")
+    @private_stores = PrivateStore.includes(:owner)
     @private_stores_count = PrivateStore.where(admin_last_check: "個人承認審査済み").count
-    @private_stores = PrivateStore.all
+    # @private_stores = PrivateStore.all
     if current_user.present?
       current_user.update!(select_trial: false)  if current_user.plan_canceled || (!current_user.trial_stripe_success && current_user.select_trial)
     end
@@ -169,7 +169,7 @@ class PrivateStoresController < ApplicationController
           category_id: @private_store.category_id,
           issue_ticket_day: Date.today,
           user_id: current_user.id,
-        ) 
+        )
       else
         ticket = Ticket.create!(
           owner_name: @owner.name,
@@ -181,7 +181,7 @@ class PrivateStoresController < ApplicationController
           category_id: @private_store.category_id,
           issue_ticket_day: Date.today,
           user_id: current_user.id,
-        ) 
+        )
       end
       redirect_to user_ticket_url(ticket, user_id: current_user.id)
       PrivateStoreMailer.with(id: current_user.id, private_store_id: @private_store.id).takeout_email.deliver_now
