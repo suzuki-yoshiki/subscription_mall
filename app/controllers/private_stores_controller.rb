@@ -100,7 +100,11 @@ class PrivateStoresController < ApplicationController
     @private_store = PrivateStore.new(private_store_params)
     respond_to do |format|
       if @private_store.save
-        @private_store.update(ordinal: PrivateStore.count)
+        if current_owner.admin_check_private == "個人店承認済み"
+          @private_store.update!(situation: "個人店承認済み", admin_last_check: "個人承認審査済み", ordinal: PrivateStore.count)
+        elsif current_owner.admin_check_private == "個人店否認済み"
+          @private_store.update!(situation: "個人店否認済み", admin_last_check: "個人店否認済み", ordinal: PrivateStore.count)
+        end
         PrivateStoreMailer.with(private_store: @private_store, new: "true").notification_email.deliver_now
         format.html { render :private_store_judging, notice: '個人店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @private_store }

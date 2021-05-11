@@ -93,7 +93,11 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     respond_to do |format|
       if @subscription.save
-	      @subscription.update(ordinal: Subscription.count)
+        if current_owner.admin_check == "加盟店承認済み"
+          @subscription.update!(situation: "加盟店承認済み", admin_last_check: "加盟承認審査済み", ordinal: Subscription.count)
+        elsif current_owner.admin_check == "加盟店否認済み"
+          @subscription.update!(situation: "加盟店否認済み", admin_last_check: "加盟店否認済み", ordinal: Subscription.count)
+        end
         SubscriptionMailer.with(subscription: @subscription, new: "true").notification_email.deliver_now
         format.html { render :subscription_judging, notice: '加盟店サブスクショップの審査申請しました' }
         format.json { render :show, status: :created, location: @subscription }
