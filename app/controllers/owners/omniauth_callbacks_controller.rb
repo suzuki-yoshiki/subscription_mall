@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  before_action :check_login, only: [:facebook, :twitter, :line]
+
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
 
@@ -76,4 +78,12 @@ class Owners::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to new_owner_registration_url
     end
   end
+  
+  def check_login
+    if current_user || current_owner || current_admin
+      flash[:danger] = "既にログインしています。別のユーザーとしてログインする場合は、一度ログアウトして下さい。"
+      redirect_to root_url, notice: '既にログインしています。別のユーザーでログインする場合は、一度ログアウトして下さい。'
+    end
+  end
+
 end

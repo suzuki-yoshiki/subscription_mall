@@ -27,8 +27,8 @@ class Admins::SessionsController < Devise::SessionsController
   # end
   def check_login
     if current_user || current_owner || current_admin
-      flash[:danger] = "既にログインしています。別ユーザーとしてログインする場合は、一度ログアウトして下さい。"
-      redirect_to root_url, notice: '既にログインしています。別ユーザーでログインしたい場合は、一度ログアウトして下さい。'
+      flash[:danger] = "既にログインしています。別のユーザーとしてログインする場合は、一度ログアウトして下さい。"
+      redirect_to root_url, notice: '既にログインしています。別のユーザーでログインする場合は、一度ログアウトして下さい。'
     end
   end
 
