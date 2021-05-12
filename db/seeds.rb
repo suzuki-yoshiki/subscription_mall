@@ -10,43 +10,43 @@ Admin.create!(name: "中野優",
               password: ENV['PASSWORD'],
               password_confirmation: ENV['PASSWORD'])
 #              
-Admin.create!(name: "中野優2",
-              email: "megurumee2@gmail.com",
-              password: "password",
-              password_confirmation: "password")
-#              
-  puts "Admin Created"
+# Admin.create!(name: "中野優2",
+#               email: "megurumee2@gmail.com",
+#               password: "password",
+#               password_confirmation: "password")
+# #              
+#   puts "Admin Created"
 
-30.times do |n|
-  name  = Faker::Name.name
-  email = "sample-#{n+1}@email.com"
-  password = "password1"
-  phone_number = Faker::Number.number(digits: 11)
-  User.create!(
-    name: name,
-    email: email,
-    phone_number: phone_number,
-    sms_auth: false,
-    password: password,
-    password_confirmation: password,
-  )
-end
+# 30.times do |n|
+#   name  = Faker::Name.name
+#   email = "sample-#{n+1}@email.com"
+#   password = "password1"
+#   phone_number = Faker::Number.number(digits: 11)
+#   User.create!(
+#     name: name,
+#     email: email,
+#     phone_number: phone_number,
+#     sms_auth: false,
+#     password: password,
+#     password_confirmation: password,
+#   )
+# end
 
-puts "User Created"
+# puts "User Created"
 
-30.times do |n|
-  name  = Faker::Name.name
-  email = "sample#{n+1}@email.com"
-  password = "password1"
-  phone_number = Faker::Number.number(digits: 11)
-  Owner.create!(name: name,
-    email: email,
-    phone_number: phone_number,
-    password: password,
-    password_confirmation: password,
-    #address: "東京都港区1-#{n}-1"
-  )
-end
+# 30.times do |n|
+#   name  = Faker::Name.name
+#   email = "sample#{n+1}@email.com"
+#   password = "password1"
+#   phone_number = Faker::Number.number(digits: 11)
+#   Owner.create!(name: name,
+#     email: email,
+#     phone_number: phone_number,
+#     password: password,
+#     password_confirmation: password,
+#     #address: "東京都港区1-#{n}-1"
+#   )
+# end
 
 puts "Owner Created"
 
@@ -119,61 +119,61 @@ answer: "ログイン後、マイカウント下の「解約について」ボ�
 puts "Question Created"
 
 
-Subscription.create!(
-  ordinal: 2,
-  owner_id: 1,
-  category_id:  7,
-  name: "個室居酒屋　たすき　天王町駅前店",
-  recommend: true,
-  trial: true,
-  title: "個室居酒屋セット",
-  shop_introduction: "焼きたて3",
-  detail: "食べ放題3",
-  subscription_detail: "大阪",
-  price: "18000",
-  image_subscription: "karaage.jpeg",
-  address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
-  food_loss: true,
-  delivery: true,
-)
-Subscription.create!(
-  ordinal: 5,
-  owner_id: 1,
-  category_id:  7,
-  name: "木村屋本店　 町田駅前店",
-  recommend: true,
-  trial: false,
-  title: "木村屋セット",
-  shop_introduction: "焼きたて3",
-  detail: "食べ放題3",
-  subscription_detail: "大阪",
-  price: "100000",
-  image_subscription: "karaage.jpeg",
-  address: "東京都町田市原町田6-13-15",
-  food_loss: true,
-  delivery: true,
-)
+# Subscription.create!(
+#   ordinal: 2,
+#   owner_id: 1,
+#   category_id:  7,
+#   name: "個室居酒屋　たすき　天王町駅前店",
+#   recommend: true,
+#   trial: true,
+#   title: "個室居酒屋セット",
+#   shop_introduction: "焼きたて3",
+#   detail: "食べ放題3",
+#   subscription_detail: "大阪",
+#   price: "18000",
+#   image_subscription: "karaage.jpeg",
+#   address: "神奈川県横浜市保土ケ谷区天王町２-47-7 天王町駅前ビルB1",
+#   food_loss: true,
+#   delivery: true,
+# )
+# Subscription.create!(
+#   ordinal: 5,
+#   owner_id: 1,
+#   category_id:  7,
+#   name: "木村屋本店　 町田駅前店",
+#   recommend: true,
+#   trial: false,
+#   title: "木村屋セット",
+#   shop_introduction: "焼きたて3",
+#   detail: "食べ放題3",
+#   subscription_detail: "大阪",
+#   price: "100000",
+#   image_subscription: "karaage.jpeg",
+#   address: "東京都町田市原町田6-13-15",
+#   food_loss: true,
+#   delivery: true,
+# )
 
-Subscription.create!(
-  ordinal: 6,
-  owner_id: 1,
-  category_id:  13,
-  name: "北海道BEER&BBQ 小田急町田",
-  recommend: true,
-  trial: false,
-  title: "北海道BEER&BBQセット",
-  shop_introduction: "焼きたて3",
-  detail: "食べ放題3",
-  subscription_detail: "大阪",
-  price: "11000",
-  image_subscription: "karaage.jpeg",
-  address: "東京都町田市森野１－３９－１　グランドゥールビル　5F",
-  food_loss: true,
-  delivery: true,
-)
+# Subscription.create!(
+#   ordinal: 6,
+#   owner_id: 1,
+#   category_id:  13,
+#   name: "北海道BEER&BBQ 小田急町田",
+#   recommend: true,
+#   trial: false,
+#   title: "北海道BEER&BBQセット",
+#   shop_introduction: "焼きたて3",
+#   detail: "食べ放題3",
+#   subscription_detail: "大阪",
+#   price: "11000",
+#   image_subscription: "karaage.jpeg",
+#   address: "東京都町田市森野１－３９－１　グランドゥールビル　5F",
+#   food_loss: true,
+#   delivery: true,
+# )
 
 
-puts "Subscription Created"
+# puts "Subscription Created"
 
 
 Category.create!(name: "和食",
